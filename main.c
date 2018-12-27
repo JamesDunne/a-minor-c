@@ -12,7 +12,11 @@ int main(int argc, char **argv) {
 	}
 
 	for (int i = 0; i < setlists->setCount; i++) {
-		printf("%s %s\n", setlists->sets[i].date, setlists->sets[i].venue);
+		const struct setlist *setlist = &setlists->sets[i];
+		printf("%s %s\n", setlist->date, setlist->venue);
+		for (int j = 0; j < setlist->songCount; j++) {
+			printf("  %2d) %s\n", j+1, setlist->songNames[j]);
+		}
 	}
 
 	return 0;
