@@ -1,0 +1,2197 @@
+midi_programs:
+- amps:
+  - name: MG
+    blocks:
+      amp1:
+        enabled_switch_cc: 37
+        xy_switch_cc: 100
+      cab1:
+        enabled_switch_cc: 39
+        xy_switch_cc: 102
+      gte1:
+        enabled_switch_cc: 60
+      cmp1:
+        enabled_switch_cc: 43
+      pit1:
+        enabled_switch_cc: 77
+      rtr1:
+        enabled_switch_cc: 86
+      phr1:
+        enabled_switch_cc: 75
+      cho1:
+        enabled_switch_cc: 41
+      dly1:
+        enabled_switch_cc: 47
+    gain_controller_cc: 18
+    volume_controller_cc: 16
+    tones:
+      clean:
+        gain: 112
+        blocks:
+          amp1:
+            on: true
+            xy: Y
+          cab1:
+            on: true
+            xy: X
+          gte1:
+            on: false
+            xy: X
+          cmp1:
+            on: true
+            xy: X
+      dirty:
+        gain: 64
+        blocks:
+          amp1:
+            on: true
+            xy: X
+          cab1:
+            on: true
+            xy: X
+          gte1:
+            on: true
+            xy: X
+          cmp1:
+            on: true
+            xy: X
+      acoustic:
+        gain: 112
+        blocks:
+          amp1:
+            on: false
+            xy: Y
+          cab1:
+            on: true
+            xy: Y
+          gte1:
+            on: false
+            xy: X
+          cmp1:
+            on: true
+            xy: X
+  - name: JD
+    blocks:
+      amp2:
+        enabled_switch_cc: 38
+        xy_switch_cc: 101
+      cab2:
+        enabled_switch_cc: 40
+        xy_switch_cc: 103
+      gte2:
+        enabled_switch_cc: 61
+      cmp2:
+        enabled_switch_cc: 44
+      pit2:
+        enabled_switch_cc: 78
+      rtr2:
+        enabled_switch_cc: 87
+      phr2:
+        enabled_switch_cc: 76
+      cho2:
+        enabled_switch_cc: 42
+      dly2:
+        enabled_switch_cc: 48
+    gain_controller_cc: 19
+    volume_controller_cc: 17
+    tones:
+      clean:
+        gain: 112
+        blocks:
+          amp2:
+            on: true
+            xy: Y
+          cab2:
+            on: true
+            xy: X
+          gte2:
+            on: false
+            xy: X
+          cmp2:
+            on: true
+            xy: X
+      dirty:
+        gain: 64
+        blocks:
+          amp2:
+            on: true
+            xy: X
+          cab2:
+            on: true
+            xy: X
+          gte2:
+            on: true
+            xy: X
+          cmp2:
+            on: true
+            xy: X
+      acoustic:
+        gain: 112
+        blocks:
+          amp2:
+            on: false
+            xy: Y
+          cab2:
+            on: true
+            xy: Y
+          gte2:
+            on: false
+            xy: X
+          cmp2:
+            on: true
+            xy: X
+  songs:
+  - name: Monkey Wrench
+    short_name: Monkey Wrench
+    alternate_names:
+    - Monkey Wrench
+    - Monkeywrench
+    who_starts: Bremer 4 ct
+    tempo: 175
+    amps:
+    - tones:
+        dirty:
+          gain: 68
+    - tones:
+        dirty:
+          gain: 68
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Zero
+    short_name: Zero
+    alternate_names:
+    - Zero
+    who_starts: Jim
+    tempo: 129
+    amps:
+    - tones:
+        dirty:
+          gain: 112
+    - tones:
+        dirty:
+          gain: 112
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 6
+        blocks:
+          dly2:
+            on: true
+          pit2:
+            on: true
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 6
+        blocks:
+          dly2:
+            on: true
+          pit2:
+            on: true
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 6
+        blocks:
+          dly2:
+            on: true
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Buddy Holly
+    short_name: Buddy Holly
+    alternate_names:
+    - Buddy Holly
+    who_starts: Glaz+Bremer
+    tempo: 121
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 6
+        blocks:
+          dly2:
+            on: true
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Plush
+    short_name: Plush
+    alternate_names:
+    - Plush
+    who_starts: Bremer 2 ct
+    tempo: 145
+    scenes:
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        blocks:
+          cho2:
+            on: true
+  - name: When I Come Around
+    short_name: Come Around
+    alternate_names:
+    - When I Come Around
+    who_starts: Jim
+    tempo: 98
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 5
+        blocks:
+          dly2:
+            on: true
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Everything Zen
+    short_name: Zen
+    alternate_names:
+    - Everything Zen
+    - Zen
+    who_starts: Glaz
+    tempo: 135
+    scenes:
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 5
+        blocks:
+          dly2:
+            on: true
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 5
+        blocks:
+          dly2:
+            on: true
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 5
+        blocks:
+          dly2:
+            on: true
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        blocks:
+          dly2:
+            on: true
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Enter Sandman
+    short_name: Sandman
+    alternate_names:
+    - Enter Sandman
+    - Sandman
+    who_starts: Glaz
+    tempo: 124
+    scenes:
+    - name: Clean intro
+      amps:
+      - tone: clean
+      - tone: clean
+        volume: -1
+    - name: Intro
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: -3
+    - name: Verse
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead
+      amps:
+      - tone: dirty
+      - tone: dirty
+        gain: 112
+        volume: 5
+        blocks:
+          dly2:
+            on: true
+    - name: JD lead;MG clean
+      amps:
+      - tone: clean
+      - tone: dirty
+        gain: 112
+        volume: 2
+        blocks:
+          dly2:
+            on: true
+    - name: JD clean;MG clean
+      amps:
+      - tone: clean
+      - tone: clean
+    - name: JD clean;MG dirty
+      amps:
+      - tone: dirty
+      - tone: clean
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        gain: 112
+        volume: 5
+        blocks:
+          dly2:
+            on: true
+  - name: Crawling in the Dark
+    short_name: Crawling
+    alternate_names:
+    - Crawling in the Dark
+    - Crawling
+    who_starts: Jim
+    tempo: 94
+    scenes:
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        gain: 65
+        volume: -1.5
+        blocks:
+          phr2:
+            on: true
+          dly2:
+            on: true
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        gain: 65
+        volume: -1.5
+        blocks:
+          phr2:
+            on: true
+          dly2:
+            on: true
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        gain: 65
+        volume: -1.5
+        blocks:
+          phr2:
+            on: true
+          dly2:
+            on: true
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        gain: 65
+        volume: -1.5
+        blocks:
+          phr2:
+            on: true
+          dly2:
+            on: true
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Song 2
+    short_name: Song 2
+    alternate_names:
+    - Song 2
+    who_starts: Bremer
+    tempo: 130
+    amps:
+    - tones:
+        dirty:
+          gain: 112
+    - tones:
+        dirty:
+          gain: 112
+    scenes:
+    - name: JD clean;MG dirty
+      amps:
+      - tone: dirty
+      - tone: clean
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD clean;MG dirty
+      amps:
+      - tone: dirty
+      - tone: clean
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD clean;MG dirty
+      amps:
+      - tone: dirty
+      - tone: clean
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Sex Type Thing
+    short_name: Sex Type Thing
+    alternate_names:
+    - Sex Type Thing
+    who_starts: Bremer 4 ct
+    tempo: 135
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Counting Blue Cars
+    short_name: Blue Cars
+    alternate_names:
+    - Counting Blue Cars
+    - Blue Cars
+    who_starts: Bremer 4 ct
+    tempo: 101
+    scenes:
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        blocks:
+          dly2:
+            on: true
+    - name: JD clean;MG dirty
+      amps:
+      - tone: dirty
+      - tone: clean
+        blocks:
+          cho2:
+            on: true
+          dly2:
+            on: true
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        blocks:
+          dly2:
+            on: true
+    - name: JD clean;MG dirty
+      amps:
+      - tone: dirty
+      - tone: clean
+        blocks:
+          cho2:
+            on: true
+          dly2:
+            on: true
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        blocks:
+          dly2:
+            on: true
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 4
+        blocks:
+          dly2:
+            on: true
+    - name: JD clean;MG dirty
+      amps:
+      - tone: dirty
+      - tone: clean
+        blocks:
+          cho2:
+            on: true
+          dly2:
+            on: true
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        blocks:
+          dly2:
+            on: true
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 4
+        blocks:
+          dly2:
+            on: true
+  - name: In Bloom
+    short_name: In Bloom
+    alternate_names:
+    - In Bloom
+    who_starts: Bremer 4 ct
+    tempo: 80
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 6
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Hash Pipe
+    short_name: Hash Pipe
+    alternate_names:
+    - Hash Pipe
+    - Hashpipe
+    who_starts: Bremer+Adam
+    tempo: 126
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 6
+        blocks:
+          dly2:
+            on: true
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: My Hero
+    short_name: My Hero
+    alternate_names:
+    - My Hero
+    who_starts: Bremer+Adam
+    tempo: 154
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Machinehead
+    short_name: Machinehead
+    alternate_names:
+    - Machinehead
+    - Machine Head
+    who_starts: Jim
+    tempo: 110
+    amps:
+    - tones:
+        dirty:
+          gain: 81
+    - tones:
+        dirty:
+          gain: 81
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Holiday
+    short_name: Holiday
+    alternate_names:
+    - Holiday
+    who_starts: Jim
+    tempo: 168
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD dirty;MG lead
+      amps:
+      - tone: dirty
+        volume: 4
+        blocks:
+          dly1:
+            on: true
+      - tone: dirty
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Brain Stew
+    short_name: Brain Stew
+    alternate_names:
+    - Brain Stew
+    - Brainstew
+    who_starts: Jim
+    tempo: 76
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Bound for the Floor
+    short_name: Bound
+    alternate_names:
+    - Bound for the Floor
+    who_starts: Jim
+    tempo: 120
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        blocks:
+          dly2:
+            on: true
+          cho2:
+            on: true
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Cumbersome
+    short_name: Cumbersome
+    alternate_names:
+    - Cumbersome
+    who_starts: Jim
+    tempo: 81
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Lump
+    short_name: Lump
+    alternate_names:
+    - Lump
+    who_starts: Bremer+Glaz
+    tempo: 143
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Hey Jealousy
+    short_name: Hey Jealousy
+    alternate_names:
+    - Hey Jealousy
+    who_starts: Bremer 4 ct
+    tempo: 154
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+        gain: 48
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+        gain: 48
+      - tone: dirty
+        volume: 4
+        blocks:
+          dly2:
+            on: true
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+        gain: 48
+      - tone: dirty
+  - name: Kryptonite
+    short_name: Kryptonite
+    alternate_names:
+    - Kryptonite
+    who_starts: Glaz
+    tempo: 100
+    scenes:
+    - name: JD clean;MG clean
+      amps:
+      - tone: clean
+      - tone: clean
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD clean;MG dirty
+      amps:
+      - tone: dirty
+      - tone: clean
+    - name: JD clean;MG clean
+      amps:
+      - tone: clean
+      - tone: clean
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD dirty;MG lead
+      amps:
+      - tone: dirty
+        volume: 3
+        blocks:
+          dly1:
+            on: true
+      - tone: dirty
+    - name: JD clean;MG lead
+      amps:
+      - tone: dirty
+        volume: 3
+        blocks:
+          dly1:
+            on: true
+      - tone: clean
+    - name: JD clean;MG clean
+      amps:
+      - tone: clean
+      - tone: clean
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD dirty;MG lead
+      amps:
+      - tone: dirty
+        volume: 3
+        blocks:
+          dly1:
+            on: true
+      - tone: dirty
+  - name: Dammit
+    short_name: Dammit
+    alternate_names:
+    - Dammit
+    - Damnit
+    - Damn It
+    who_starts: Jim
+    tempo: 110
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: My Own Worst Enemy
+    short_name: My Own Worst Enemy
+    alternate_names:
+    - My Own Worst Enemy
+    who_starts: Jim
+    tempo: 104
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 2
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 2
+        blocks:
+          dly2:
+            on: true
+  - name: The Middle
+    short_name: The Middle
+    alternate_names:
+    - The Middle
+    - Middle
+    who_starts: Glaz
+    tempo: 162
+    amps:
+    - tones:
+        dirty:
+          gain: 68
+    - tones:
+        dirty:
+          gain: 68
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        gain: 100
+        volume: 4
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: -2
+        blocks:
+          phr2:
+            on: true
+          dly2:
+            on: true
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Bullet With Butterfly Wings
+    short_name: Bullet
+    alternate_names:
+    - Bullet With Butterfly Wings
+    - Bullet
+    who_starts: Glaz
+    tempo: 122
+    scenes:
+    - name: JD clean;MG clean
+      amps:
+      - tone: clean
+      - tone: clean
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD clean;MG clean
+      amps:
+      - tone: clean
+      - tone: clean
+    - name: JD lead;MG clean
+      amps:
+      - tone: clean
+      - tone: dirty
+        volume: -3
+        blocks:
+          dly2:
+            on: true
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD clean;MG clean
+      amps:
+      - tone: clean
+      - tone: clean
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 4
+        blocks:
+          cho2:
+            on: true
+  - name: Beautiful Disaster
+    short_name: Beautiful Disaster
+    alternate_names:
+    - Beautiful Disaster
+    who_starts: Jim
+    tempo: 169
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Bells
+    short_name: Bells
+    alternate_names:
+    - For Whom The Bell Tolls
+    - Bells
+    who_starts: Bremer
+    tempo: 118
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 5
+        blocks:
+          dly2:
+            on: true
+  - name: Fuel
+    short_name: Fuel
+    alternate_names:
+    - Fuel
+    who_starts: Glaz
+    tempo: 107
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 4
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 6
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 4
+        blocks:
+          dly2:
+            on: true
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD echo
+      amps:
+      - tone: dirty
+      - tone: dirty
+        blocks:
+          dly2:
+            on: true
+  - name: Say It Aint So
+    short_name: Say It Aint So
+    alternate_names:
+    - Say It Aint So
+    - Say It Ain't So
+    - Say It Ain’t So
+    who_starts: Jim
+    tempo: 77
+    scenes:
+    - name: JD clean;MG clean
+      amps:
+      - tone: clean
+      - tone: clean
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD clean;MG clean
+      amps:
+      - tone: clean
+      - tone: clean
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 4
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD clean;MG dirty
+      amps:
+      - tone: dirty
+      - tone: clean
+  - name: Shine
+    short_name: Shine
+    alternate_names:
+    - Shine
+    who_starts: Jim
+    tempo: 151
+    amps:
+    - tones:
+        dirty:
+          gain: 78
+    - tones:
+        dirty:
+          gain: 78
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+        volume: -2
+      - tone: dirty
+    - name: JD lead
+      amps:
+      - tone: dirty
+        volume: -2
+      - tone: dirty
+        gain: 125
+        volume: 4
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+        volume: -2
+      - tone: dirty
+  - name: Basketcase
+    short_name: Basketcase
+    alternate_names:
+    - Basketcase
+    - Basket Case
+    who_starts: Glaz
+    tempo: 86
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Undone
+    short_name: Undone
+    alternate_names:
+    - Undone
+    - Sweater Song
+    - The Sweater Song
+    who_starts: Bremer
+    tempo: 81
+    scenes:
+    - name: JD clean;MG clean
+      amps:
+      - tone: clean
+      - tone: clean
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD clean;MG clean
+      amps:
+      - tone: clean
+      - tone: clean
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 4
+        blocks:
+          dly2:
+            on: true
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 4
+        blocks:
+          dly2:
+            on: true
+  - name: Story of a Girl
+    short_name: Story of a Girl
+    alternate_names:
+    - Story of a Girl
+    - Absolutely
+    who_starts: Glaz
+    tempo: 97
+    amps:
+    - tones:
+        dirty:
+          gain: 65
+    - tones:
+        dirty:
+          gain: 65
+    scenes:
+    - name: Rhythm
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead
+      amps:
+      - tone: dirty
+      - tone: dirty
+        gain: 112
+        volume: 3
+    - name: Rhythm
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Trippin
+    short_name: Trippin
+    alternate_names:
+    - Trippin
+    - Trippin’
+    - Trippin'
+    - Trippin on a Hole in a Paper Heart
+    - Trippin on a Hole
+    - Tripping
+    - Tripping on a Hole in a Paper Heart
+    - Tripping on a Hole
+    who_starts: Bremer
+    tempo: 107
+    amps:
+    - tones:
+        dirty:
+          gain: 74
+    - tones:
+        dirty:
+          gain: 74
+    scenes:
+    - name: Rhythm
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 6
+    - name: Rhythm
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Low
+    short_name: Low
+    alternate_names:
+    - Low
+    who_starts: Bremer
+    tempo: 86
+    amps:
+    - tones:
+        dirty:
+          gain: 65
+    - tones:
+        dirty:
+          gain: 65
+    scenes:
+    - name: Chorus
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: Verse
+      amps:
+      - tone: clean
+      - tone: dirty
+        blocks:
+          dly2:
+            on: true
+    - name: Chorus
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: Verse
+      amps:
+      - tone: clean
+      - tone: dirty
+        blocks:
+          dly2:
+            on: true
+    - name: Chorus
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: Lead
+      amps:
+      - tone: dirty
+      - tone: dirty
+        gain: 94
+        volume: 4
+        blocks:
+          dly2:
+            on: true
+    - name: Bridge
+      amps:
+      - tone: clean
+      - tone: dirty
+        gain: 94
+        volume: -2
+        blocks:
+          dly2:
+            on: true
+    - name: Chorus
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: Outro Lead
+      amps:
+      - tone: dirty
+      - tone: dirty
+        gain: 94
+        blocks:
+          dly2:
+            on: true
+  - name: Closing Time
+    short_name: Closing Time
+    alternate_names:
+    - Closing Time
+    who_starts: Glaz
+    tempo: 120
+    amps:
+    - tones:
+        dirty:
+          gain: 94
+    - tones:
+        dirty:
+          gain: 94
+    scenes:
+    - name: Intro
+      amps:
+      - tone: dirty
+        gain: 65
+        volume: -2
+      - tone: dirty
+        gain: 65
+        volume: -2
+    - name: Chorus
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: Verse
+      amps:
+      - tone: dirty
+        gain: 65
+        volume: -2
+      - tone: dirty
+        gain: 65
+        volume: -2
+    - name: Chorus
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: Verse
+      amps:
+      - tone: dirty
+        gain: 65
+        volume: -2
+      - tone: dirty
+        gain: 65
+        volume: -2
+    - name: Chorus
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: Outro
+      amps:
+      - tone: dirty
+        gain: 65
+        volume: -2
+      - tone: dirty
+        gain: 65
+        volume: -2
+  - name: Slayer
+    short_name: Slayer
+    alternate_names:
+    - Slayer
+    - Raining Blood
+    who_starts: Bremer
+    tempo: 130
+    scenes:
+    - name: Intro
+      amps:
+      - tone: dirty
+        blocks:
+          dly1:
+            on: true
+      - tone: dirty
+        blocks:
+          dly2:
+            on: true
+    - name: Rhythm
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: JD lead;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 4
+        blocks:
+          dly2:
+            on: true
+  - name: Happy Birthday
+    short_name: Birthday
+    alternate_names:
+    - Happy Birthday
+    who_starts: Glaz
+    tempo: 130
+    scenes:
+    - name: Rhythm
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: December
+    short_name: December
+    alternate_names:
+    - December
+    who_starts: Jim
+    tempo: 122
+    amps:
+    - tones:
+        dirty:
+          gain: 46
+    - tones:
+        dirty:
+          gain: 46
+    scenes:
+    - name: Intro
+      amps:
+      - tone: clean
+        blocks:
+          cho1:
+            on: true
+      - tone: clean
+        blocks:
+          cho2:
+            on: true
+    - name: Post-Chorus
+      amps:
+      - tone: clean
+        blocks:
+          cho1:
+            on: true
+      - tone: dirty
+        volume: -2
+    - name: Verse
+      amps:
+      - tone: clean
+        blocks:
+          cho1:
+            on: true
+      - tone: clean
+        blocks:
+          cho2:
+            on: true
+    - name: Post-Chorus
+      amps:
+      - tone: clean
+        blocks:
+          cho1:
+            on: true
+      - tone: dirty
+        volume: -2
+    - name: Breakdown
+      amps:
+      - tone: clean
+        blocks:
+          cho1:
+            on: true
+      - tone: dirty
+        gain: 32
+        volume: -2
+    - name: Chorus
+      amps:
+      - tone: clean
+        blocks:
+          cho1:
+            on: true
+      - tone: dirty
+        volume: -2
+        blocks:
+          dly2:
+            on: true
+    - name: Jam
+      amps:
+      - tone: clean
+        blocks:
+          cho1:
+            on: true
+      - tone: dirty
+        gain: 65
+        volume: -1
+        blocks:
+          dly2:
+            on: true
+    - name: Outro
+      amps:
+      - tone: clean
+        blocks:
+          cho1:
+            on: true
+      - tone: clean
+        blocks:
+          cho2:
+            on: true
+  - name: Bouncing off the Walls
+    short_name: Bouncing
+    alternate_names:
+    - Bouncing off the Walls
+    - Bouncin off the Walls
+    - Bouncin
+    - Bouncing
+    - Bouncin'
+    - Bouncin’
+    who_starts: Jim
+    tempo: 150
+    scenes:
+    - name: Intro
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: Lead
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 4
+    - name: Verse
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Satan Song
+    short_name: Satan Song
+    alternate_names:
+    - Satan Song
+    - Satan
+    - The Satan Song
+    who_starts: Bremer
+    tempo: 140
+    scenes:
+    - name: Verse
+      amps:
+      - tone: acoustic
+      - tone: dirty
+    - name: Lead
+      amps:
+      - tone: acoustic
+      - tone: dirty
+        volume: 4
+    - name: Verse
+      amps:
+      - tone: acoustic
+      - tone: dirty
+    - name: Lead
+      amps:
+      - tone: acoustic
+      - tone: dirty
+        volume: 4
+    - name: Verse
+      amps:
+      - tone: acoustic
+      - tone: dirty
+  - name: Kids
+    short_name: Kids
+    alternate_names:
+    - Kids
+    - Kids Arent Alright
+    - Kids Aren't Alright
+    - The Kids Aren't Alright
+    - Kids Aren’t Alright
+    who_starts: Glaz
+    tempo: 130
+    scenes:
+    - name: Rhythm
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: Hook
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 4
+    - name: Rhythm
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: Hook
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 4
+    - name: Rhythm
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: Lead
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 5
+    - name: Rhythm
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Small Things
+    short_name: Small Things
+    alternate_names:
+    - Small Things
+    - All The Small Things
+    who_starts: Bremer fill
+    tempo: 130
+    scenes:
+    - name: Rhythm
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: Breakdown
+      amps:
+      - tone: dirty
+        gain: 24
+      - tone: dirty
+    - name: Rhythm
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Creep
+    short_name: Creep
+    alternate_names:
+    - Creep
+    who_starts: Bremer 4 ct
+    tempo: 82
+    amps:
+    - tones:
+        dirty:
+          gain: 58
+    - tones:
+        dirty:
+          gain: 58
+    scenes:
+    - name: Rhythm
+      amps:
+      - tone: dirty
+        gain: 96
+      - tone: clean
+        blocks:
+          cho2:
+            on: true
+    - name: Breakdown
+      amps:
+      - tone: dirty
+        gain: 96
+      - tone: dirty
+    - name: Rhythm
+      amps:
+      - tone: dirty
+        gain: 96
+      - tone: clean
+        blocks:
+          cho2:
+            on: true
+    - name: Breakdown
+      amps:
+      - tone: dirty
+        gain: 96
+      - tone: dirty
+    - name: Rhythm
+      amps:
+      - tone: dirty
+        gain: 96
+      - tone: clean
+        blocks:
+          cho2:
+            on: true
+  - name: Go My Way
+    short_name: Go My Way
+    alternate_names:
+    - Go My Way
+    - Are You Gonna Go My Way
+    - Gonna Go My Way
+    who_starts: Bremer snare
+    tempo: 130
+    amps:
+    - tones:
+        dirty:
+          gain: 60
+    - tones:
+        dirty:
+          gain: 60
+    scenes:
+    - name: Rhythm
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: Lead
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 3
+    - name: Rhythm
+      amps:
+      - tone: dirty
+      - tone: dirty
+  - name: Interstate
+    short_name: Interstate
+    alternate_names:
+    - Interstate Love Song
+    - Interstate
+    - ILS
+    who_starts: Bremer 4 ct
+    tempo: 110
+    amps:
+    - tones:
+        dirty:
+          gain: 44
+    - tones:
+        dirty:
+          gain: 44
+    scenes:
+    - name: Rhythm
+      amps:
+      - tone: dirty
+        volume: -1
+      - tone: dirty
+        volume: -1
+  - name: Comedown
+    short_name: Comedown
+    alternate_names:
+    - Comedown
+    - Come Down
+    who_starts: Bremer 4 ct
+    tempo: 110
+    amps:
+    - tones:
+        dirty:
+          gain: 66
+    - tones:
+        dirty:
+          gain: 66
+    scenes:
+    - name: Rhythm
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: Lead
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 3
+        blocks:
+          dly2:
+            on: true
+    - name: Rhythm
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: Outro
+      amps:
+      - tone: dirty
+      - tone: dirty
+        volume: 1
+        blocks:
+          dly2:
+            on: true
+  - name: Ghostbusters
+    short_name: Ghostbusters
+    alternate_names:
+    - Ghostbusters
+    - Ghost Busters
+    who_starts: Glaz
+    tempo: 120
+    amps:
+    - tones:
+        dirty:
+          gain: 68
+    - tones:
+        dirty:
+          gain: 68
+    scenes:
+    - name: JD dirty;MG dirty
+      amps:
+      - tone: dirty
+      - tone: dirty
+- midi: 1
+  amps:
+  - name: MG
+    blocks:
+      amp1:
+        enabled_switch_cc: 37
+        xy_switch_cc: 100
+      cab1:
+        enabled_switch_cc: 39
+        xy_switch_cc: 102
+      gte1:
+        enabled_switch_cc: 60
+      cmp1:
+        enabled_switch_cc: 43
+      pit1:
+        enabled_switch_cc: 77
+      rtr1:
+        enabled_switch_cc: 86
+      phr1:
+        enabled_switch_cc: 75
+      cho1:
+        enabled_switch_cc: 41
+      dly1:
+        enabled_switch_cc: 47
+    gain_controller_cc: 18
+    volume_controller_cc: 16
+    tones:
+      clean:
+        gain: 18
+        blocks:
+          amp1:
+            on: true
+            xy: Y
+          cab1:
+            on: true
+            xy: X
+          gte1:
+            on: false
+            xy: X
+          cmp1:
+            on: true
+            xy: X
+      dirty:
+        gain: 64
+        blocks:
+          amp1:
+            on: true
+            xy: X
+          cab1:
+            on: true
+            xy: X
+          gte1:
+            on: true
+            xy: X
+          cmp1:
+            on: true
+            xy: X
+      acoustic:
+        gain: 18
+        blocks:
+          amp1:
+            on: false
+            xy: Y
+          cab1:
+            on: true
+            xy: Y
+          gte1:
+            on: false
+            xy: X
+          cmp1:
+            on: true
+            xy: X
+  - name: JD
+    blocks:
+      amp2:
+        enabled_switch_cc: 38
+        xy_switch_cc: 101
+      cab2:
+        enabled_switch_cc: 40
+        xy_switch_cc: 103
+      gte2:
+        enabled_switch_cc: 61
+      cmp2:
+        enabled_switch_cc: 44
+      pit2:
+        enabled_switch_cc: 78
+      rtr2:
+        enabled_switch_cc: 87
+      phr2:
+        enabled_switch_cc: 76
+      cho2:
+        enabled_switch_cc: 42
+      dly2:
+        enabled_switch_cc: 48
+    gain_controller_cc: 19
+    volume_controller_cc: 17
+    tones:
+      clean:
+        gain: 112
+        blocks:
+          amp2:
+            on: true
+            xy: Y
+          cab2:
+            on: true
+            xy: X
+          gte2:
+            on: false
+            xy: X
+          cmp2:
+            on: true
+            xy: X
+      dirty:
+        gain: 64
+        blocks:
+          amp2:
+            on: true
+            xy: X
+          cab2:
+            on: true
+            xy: X
+          gte2:
+            on: true
+            xy: X
+          cmp2:
+            on: true
+            xy: X
+      acoustic:
+        gain: 112
+        blocks:
+          amp2:
+            on: false
+            xy: Y
+          cab2:
+            on: true
+            xy: Y
+          gte2:
+            on: false
+            xy: X
+          cmp2:
+            on: true
+            xy: X
+  songs:
+  - name: Drive
+    short_name: Drive
+    alternate_names:
+    - Drive
+    who_starts: Jim
+    tempo: 91
+    amps:
+    - tones:
+        dirty:
+          gain: 112
+    - tones:
+        dirty:
+          gain: 112
+    scenes:
+    - name: Clean
+      amps:
+      - tone: acoustic
+      - tone: acoustic
+    - name: MG Lead
+      amps:
+      - tone: dirty
+        volume: 4
+        blocks:
+          rtr1:
+            on: true
+          dly1:
+            on: true
+      - tone: acoustic
+    - name: Clean
+      amps:
+      - tone: acoustic
+      - tone: acoustic
+  - name: What I Got
+    short_name: What I Got
+    alternate_names:
+    - What I Got
+    who_starts: Bremer
+    tempo: 96
+    scenes:
+    - name: JD clean;MG clean
+      amps:
+      - tone: acoustic
+      - tone: acoustic
+    - name: JD clean;MG clean
+      amps:
+      - tone: acoustic
+      - tone: acoustic
+        volume: 4
+    - name: JD clean;MG clean
+      amps:
+      - tone: acoustic
+      - tone: acoustic
+    - name: JD clean;MG clean
+      amps:
+      - tone: acoustic
+      - tone: acoustic
+        volume: 4
+    - name: JD clean;MG clean
+      amps:
+      - tone: acoustic
+      - tone: acoustic
+- midi: 2
+  amps:
+  - name: MG
+    blocks:
+      amp1:
+        enabled_switch_cc: 37
+        xy_switch_cc: 100
+      cab1:
+        enabled_switch_cc: 39
+        xy_switch_cc: 102
+      gte1:
+        enabled_switch_cc: 60
+      cmp1:
+        enabled_switch_cc: 43
+      pit1:
+        enabled_switch_cc: 77
+      rtr1:
+        enabled_switch_cc: 86
+      phr1:
+        enabled_switch_cc: 75
+      cho1:
+        enabled_switch_cc: 41
+      dly1:
+        enabled_switch_cc: 47
+    gain_controller_cc: 18
+    volume_controller_cc: 16
+    tones:
+      clean:
+        gain: 18
+        blocks:
+          amp1:
+            on: true
+            xy: Y
+          cab1:
+            on: true
+            xy: X
+          gte1:
+            on: false
+            xy: X
+          cmp1:
+            on: true
+            xy: X
+      dirty:
+        gain: 64
+        blocks:
+          amp1:
+            on: true
+            xy: X
+          cab1:
+            on: true
+            xy: X
+          gte1:
+            on: true
+            xy: X
+          cmp1:
+            on: true
+            xy: X
+      acoustic:
+        gain: 18
+        blocks:
+          amp1:
+            on: false
+            xy: Y
+          cab1:
+            on: true
+            xy: Y
+          gte1:
+            on: false
+            xy: X
+          cmp1:
+            on: true
+            xy: X
+  - name: JD
+    blocks:
+      amp2:
+        enabled_switch_cc: 38
+        xy_switch_cc: 101
+      cab2:
+        enabled_switch_cc: 40
+        xy_switch_cc: 103
+      gte2:
+        enabled_switch_cc: 61
+      cmp2:
+        enabled_switch_cc: 44
+      pit2:
+        enabled_switch_cc: 78
+      rtr2:
+        enabled_switch_cc: 87
+      phr2:
+        enabled_switch_cc: 76
+      cho2:
+        enabled_switch_cc: 42
+      dly2:
+        enabled_switch_cc: 48
+    gain_controller_cc: 19
+    volume_controller_cc: 17
+    tones:
+      clean:
+        gain: 112
+        blocks:
+          amp2:
+            on: true
+            xy: Y
+          cab2:
+            on: true
+            xy: X
+          gte2:
+            on: false
+            xy: X
+          cmp2:
+            on: true
+            xy: X
+      dirty:
+        gain: 64
+        blocks:
+          amp2:
+            on: true
+            xy: X
+          cab2:
+            on: true
+            xy: X
+          gte2:
+            on: true
+            xy: X
+          cmp2:
+            on: true
+            xy: X
+      acoustic:
+        gain: 112
+        blocks:
+          amp2:
+            on: false
+            xy: Y
+          cab2:
+            on: true
+            xy: Y
+          gte2:
+            on: false
+            xy: X
+          cmp2:
+            on: true
+            xy: X
+  songs:
+  - name: Puppets
+    short_name: Puppets
+    alternate_names:
+    - Master of Puppets
+    - Puppets
+    who_starts: Bremer
+    tempo: 106
+    amps:
+    - tones:
+        dirty:
+          gain: 48
+    - tones:
+        dirty:
+          gain: 48
+    scenes:
+    - name: Main
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: Breakdown clean
+      amps:
+      - tone: clean
+        volume: 3
+        blocks:
+          cho1:
+            on: true
+      - tone: dirty
+        volume: 1
+        blocks:
+          dly2:
+            on: true
+    - name: Breakdown harm
+      amps:
+      - tone: clean
+        volume: 3
+        blocks:
+          cho1:
+            on: true
+      - tone: dirty
+        volume: 1
+        blocks:
+          dly2:
+            on: true
+          pit2:
+            on: true
+    - name: Breakdown lead
+      amps:
+      - tone: clean
+        volume: 3
+        blocks:
+          cho1:
+            on: true
+      - tone: dirty
+        volume: 6
+        blocks:
+          dly2:
+            on: true
+    - name: Breakdown harm
+      amps:
+      - tone: clean
+        volume: 3
+        blocks:
+          cho1:
+            on: true
+      - tone: dirty
+        volume: 1
+        blocks:
+          dly2:
+            on: true
+          pit2:
+            on: true
+    - name: Main
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: Lead
+      amps:
+      - tone: dirty
+      - tone: dirty
+        gain: 96
+        volume: 6
+        blocks:
+          dly2:
+            on: true
+    - name: Main
+      amps:
+      - tone: dirty
+      - tone: dirty
+    - name: Lead
+      amps:
+      - tone: dirty
+      - tone: dirty
+        gain: 112
+        volume: 3
+        blocks:
+          dly2:
+            on: true

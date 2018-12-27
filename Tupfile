@@ -1,2 +1,5 @@
-: foreach *.c |> gcc -Wall -c %f -o %o |> %B.o
-: *.o |> gcc %f -o %o |> a-minor
+CFLAGS += -Wall -std=c11
+LDFLAGS += -lcyaml -lyaml
+
+: foreach *.c |> clang $(CFLAGS) -c %f -o %o |> %B.o
+: *.o |> clang $(LDFLAGS) %f -o %o |> a-minor
