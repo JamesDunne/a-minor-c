@@ -76,21 +76,46 @@ static const cyaml_schema_value_t setlists_schema = {
 	)
 };
 
-#if 0
-public enum XYSwitch
-{
-    X,
-    Y
-}
+enum xy_switch {
+	XY_X,
+	XY_Y
+};
 
-public class FXBlock
-{
-    public string Name { get; set; }
-    public bool? On { get; set; }
-    [YamlMember(Alias = "Xy")]
-    public XYSwitch? XY { get; set; }
-}
-#endif
+struct fx_block {
+	const char *name;
+	bool *on;
+	enum xy_switch *xy;
+};
+
+static const cyaml_strval_t xy_switch_strings[] = {
+	{ "X", XY_X },
+	{ "Y", XY_Y }
+};
+
+static const cyaml_schema_field_t fx_block_fields_schema[] = {
+	CYAML_FIELD_STRING_PTR(
+		"name", CYAML_FLAG_POINTER,
+		struct fx_block, name, 0, CYAML_UNLIMITED
+	),
+	CYAML_FIELD_BOOL(
+		"on", CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER,
+		struct fx_block, on
+	),
+	CYAML_FIELD_ENUM(
+		"xy", CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER,
+		struct fx_block, xy,
+		xy_switch_strings, CYAML_ARRAY_LEN(xy_switch_strings)
+	),
+	CYAML_FIELD_END
+};
+
+static const cyaml_schema_value_t fx_block_schema = {
+	CYAML_VALUE_MAPPING(
+		CYAML_FLAG_DEFAULT,
+		struct fx_block,
+		fx_block_fields_schema
+	)
+};
 
 struct amp_tone_definition {
 	const char *name;
@@ -114,12 +139,12 @@ static const cyaml_schema_field_t amp_tone_definition_fields_schema[] = {
 		"volume", CYAML_FLAG_OPTIONAL,
 		struct amp_tone_definition, volume_dB
 	),
-	CYAML_FIELD_IGNORE("blocks", CYAML_FLAG_OPTIONAL),
-	// CYAML_FIELD_SEQUENCE_COUNT(
-	// 	"blocks", CYAML_FLAG_POINTER,
-	// 	struct amp_tone_definition, blocks, blocks_count,
-	// 	&amp_tone_definition_schema, 0, CYAML_UNLIMITED
-	// ),
+	// CYAML_FIELD_IGNORE("blocks", CYAML_FLAG_OPTIONAL),
+	CYAML_FIELD_SEQUENCE_COUNT(
+		"blocks", CYAML_FLAG_POINTER,
+		struct amp_tone_definition, blocks, blocks_count,
+		&fx_block_schema, 0, CYAML_UNLIMITED
+	),
 	CYAML_FIELD_END
 };
 
@@ -132,9 +157,9 @@ static const cyaml_schema_value_t amp_tone_definition_schema = {
 };
 
 struct fx_block_definition {
-    const char *name;
-    int enabled_switch_cc;
-    int *xy_switch_cc;     // optional
+	const char *name;
+	int enabled_switch_cc;
+	int *xy_switch_cc;     // optional
 };
 
 static const cyaml_schema_field_t fx_block_definition_fields_schema[] = {
@@ -317,12 +342,14 @@ static const cyaml_schema_field_t midi_program_fields_schema[] = {
 		struct midi_program, amps, amps_count,
 		&amp_definition_schema, 0, CYAML_UNLIMITED
 	),
+
 	CYAML_FIELD_IGNORE("songs", CYAML_FLAG_OPTIONAL),
 	// CYAML_FIELD_SEQUENCE_COUNT(
 	// 	"songs", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
 	// 	struct midi_program, songs, song_count,
 	// 	&song_schema, 0, CYAML_UNLIMITED
 	// ),
+
 	CYAML_FIELD_END
 };
 
@@ -336,8 +363,8 @@ static const cyaml_schema_value_t midi_program_schema = {
 
 struct midi_programs
 {
-    struct midi_program *midi_programs;
-    int midi_programs_count;
+	struct midi_program *midi_programs;
+	int midi_programs_count;
 };
 
 static const cyaml_schema_field_t midi_programs_fields_schema[] = {

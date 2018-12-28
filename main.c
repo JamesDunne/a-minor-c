@@ -58,6 +58,18 @@ int main(int argc, char **argv) {
 				printf("      Name:       %s\n", tone->name);
 				printf("      Gain:       %d\n", tone->gain);
 				printf("      Volume(dB): %.2f\n", tone->volume_dB);
+				printf("      Blocks:\n");
+				for (int b = 0; b < tone->blocks_count; b++) {
+					const struct fx_block *block = &tone->blocks[b];
+
+					printf("        Name: %s\n", block->name);
+					if (block->on) {
+						printf("          On: %d\n", *block->on);
+					}
+					if (block->xy) {
+						printf("          XY: %d\n", *block->xy);
+					}
+				}
 			}
 		}
 	}
