@@ -21,7 +21,24 @@ bool load_setlists(struct setlists **setlists) {
 	);
 	if (err != CYAML_OK) {
 		fprintf(stderr, "ERROR: %s\n", cyaml_strerror(err));
-		// cyaml_free(&config, &setlists_schema, setlists, 0);
+		return false;
+	}
+
+	return true;
+}
+
+bool load_programs(struct midiPrograms **midiPrograms) {
+	cyaml_err_t err;
+
+	err = cyaml_load_file(
+		"all-programs-v6.yml",
+		&config,
+		&midiPrograms_schema,
+		(void **) midiPrograms,
+		NULL
+	);
+	if (err != CYAML_OK) {
+		fprintf(stderr, "ERROR: %s\n", cyaml_strerror(err));
 		return false;
 	}
 

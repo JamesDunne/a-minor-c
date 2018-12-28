@@ -107,7 +107,15 @@ public class AmpDefinition
     // Available general tones for this amp and their block settings, e.g. clean, dirty, acoustic:
     public Dictionary<string, AmpToneDefinition> Tones { get; set; }
 }
+#endif
 
+struct ampDefinition {
+	const char *name;
+
+	
+};
+
+#if 0
 public enum XYSwitch
 {
     X,
@@ -209,22 +217,71 @@ public class Song
             || AlternateNames.Any(name => String.Compare(match, name, true) == 0);
     }
 }
+#endif
 
-public class MidiProgram
+struct midiProgram
 {
-    [YamlMember(Alias = "midi", ApplyNamingConventions = false)]
-    public int ProgramNumber { get; set; }
+	// [YamlMember(Alias = "midi", ApplyNamingConventions = false)]
+	int programNumber;
 
-    public List<AmpDefinition> Amps { get; set; }
+	struct *ampDefinition amps;
+	int ampCount;
 
-    public List<Song> Songs { get; set; }
-}
+	// struct *song songs;
+	// int songCount;
+};
 
-public class AllPrograms
+static const cyaml_schema_field_t midiProgram_fields_schema[] = {
+	CYAML_FIELD_UINT(
+		"midi", CYAML_FLAG_OPTIONAL,
+		struct midiProgram, programNumber
+	),
+	CYAML_FIELD_SEQUENCE_COUNT(
+		"amps", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
+		struct midiProgram, amps, ampCount,
+		&amp_schema, 0, CYAML_UNLIMITED
+	),
+	CYAML_FIELD_SEQUENCE_COUNT(
+		"songs", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
+		struct midiProgram, songs, songCount,
+		&song_schema, 0, CYAML_UNLIMITED
+	),
+	CYAML_FIELD_END
+};
+
+static const cyaml_schema_value_t midiProgram_schema = {
+	CYAML_VALUE_MAPPING(
+		CYAML_FLAG_POINTER,
+		struct midiProgram,
+		midiProgram_fields_schema
+	)
+};
+
+struct midiPrograms
 {
-    public List<MidiProgram> MidiPrograms { get; set; }
-}
+    struct midiProgram *midiPrograms;
+    int midiProgramCount;
+};
 
+static const cyaml_schema_field_t midiPrograms_fields_schema[] = {
+	CYAML_FIELD_SEQUENCE_COUNT(
+		"midi_programs", CYAML_FLAG_POINTER,
+		struct midiPrograms, midiPrograms, midiProgramCount,
+		&midiProgram_schema, 0, CYAML_UNLIMITED
+	),
+	CYAML_FIELD_END
+};
+
+static const cyaml_schema_value_t midiPrograms_schema = {
+	CYAML_VALUE_MAPPING(
+		CYAML_FLAG_POINTER,
+		struct midiPrograms,
+		midiPrograms_fields_schema
+	)
+};
+
+
+#if 0
 public class LiveFX
 {
     public string BlockName;
