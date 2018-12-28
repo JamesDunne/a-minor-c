@@ -28,6 +28,11 @@ int main(int argc, char **argv) {
 		return 1;
 	}
 
+	for (int i = 0; i < midi_programs->midi_programs_count; i++) {
+		const struct midi_program *midi_program = &midi_programs->midi_programs[i];
+		printf("MIDI: %3d\n", midi_program->program_number);
+	}
+
 	// cyaml_free(&config, &setlists_schema, setlists, 0);
 	// cyaml_free(&config, &midiPrograms_schema, midi_programs, 0);
 

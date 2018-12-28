@@ -140,7 +140,7 @@ static const cyaml_schema_field_t fx_block_definition_fields_schema[] = {
 
 static const cyaml_schema_value_t fx_block_definition_schema = {
 	CYAML_VALUE_MAPPING(
-		CYAML_FLAG_POINTER,
+		CYAML_FLAG_DEFAULT,
 		struct fx_block_definition,
 		fx_block_definition_fields_schema
 	)
@@ -195,7 +195,7 @@ static const cyaml_schema_field_t amp_definition_fields_schema[] = {
 
 static const cyaml_schema_value_t amp_definition_schema = {
 	CYAML_VALUE_MAPPING(
-		CYAML_FLAG_POINTER,
+		CYAML_FLAG_DEFAULT,
 		struct amp_definition,
 		amp_definition_fields_schema
 	)
@@ -293,7 +293,7 @@ struct midi_program
 };
 
 static const cyaml_schema_field_t midi_program_fields_schema[] = {
-	CYAML_FIELD_UINT(
+	CYAML_FIELD_INT(
 		"midi", CYAML_FLAG_OPTIONAL,
 		struct midi_program, program_number
 	),
@@ -313,7 +313,7 @@ static const cyaml_schema_field_t midi_program_fields_schema[] = {
 
 static const cyaml_schema_value_t midi_program_schema = {
 	CYAML_VALUE_MAPPING(
-		CYAML_FLAG_POINTER,
+		CYAML_FLAG_DEFAULT,
 		struct midi_program,
 		midi_program_fields_schema
 	)
