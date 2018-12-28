@@ -122,6 +122,30 @@ struct fx_block_definition {
     int *xy_switch_cc;     // optional
 };
 
+static const cyaml_schema_field_t fx_block_definition_fields_schema[] = {
+	CYAML_FIELD_STRING_PTR(
+		"name", CYAML_FLAG_POINTER,
+		struct fx_block_definition, name, 0, CYAML_UNLIMITED
+	),
+	CYAML_FIELD_UINT(
+		"enabled_switch_cc", CYAML_FLAG_OPTIONAL,
+		struct fx_block_definition, enabled_switch_cc
+	),
+	CYAML_FIELD_UINT(
+		"xy_switch_cc", CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER,
+		struct fx_block_definition, xy_switch_cc
+	),
+	CYAML_FIELD_END
+};
+
+static const cyaml_schema_value_t fx_block_definition_schema = {
+	CYAML_VALUE_MAPPING(
+		CYAML_FLAG_POINTER,
+		struct fx_block_definition,
+		fx_block_definition_fields_schema
+	)
+};
+
 struct amp_definition {
 	const char *name;
 
@@ -132,9 +156,9 @@ struct amp_definition {
 	// MIDI CC of external controller that is mapped to volume:
 	int volume_controller_cc;
 
-	// // Available FX blocks for this amp in this MIDI program, including amp, cab, gate, etc.:
-	// struct fx_block_definition *blocks;
-	// int blocks_count;
+	// Available FX blocks for this amp in this MIDI program, including amp, cab, gate, etc.:
+	struct fx_block_definition *blocks;
+	int blocks_count;
 
 	// // Available general tones for this amp and their block settings, e.g. clean, dirty, acoustic:
 	// struct amp_tone_definition *tones;
@@ -154,12 +178,12 @@ static const cyaml_schema_field_t amp_definition_fields_schema[] = {
 		"volume_controller_cc", CYAML_FLAG_OPTIONAL,
 		struct amp_definition, volume_controller_cc
 	),
-	CYAML_FIELD_IGNORE("blocks", CYAML_FLAG_OPTIONAL),
-	// CYAML_FIELD_SEQUENCE_COUNT(
-	// 	"blocks", CYAML_FLAG_POINTER,
-	// 	struct amp_definition, blocks, blocks_count,
-	// 	&fx_block_definition_schema, 0, CYAML_UNLIMITED
-	// ),
+	// CYAML_FIELD_IGNORE("blocks", CYAML_FLAG_OPTIONAL),
+	CYAML_FIELD_SEQUENCE_COUNT(
+		"blocks", CYAML_FLAG_POINTER,
+		struct amp_definition, blocks, blocks_count,
+		&fx_block_definition_schema, 0, CYAML_UNLIMITED
+	),
 	CYAML_FIELD_IGNORE("tones", CYAML_FLAG_OPTIONAL),
 	// CYAML_FIELD_SEQUENCE_COUNT(
 	// 	"tones", CYAML_FLAG_POINTER,
