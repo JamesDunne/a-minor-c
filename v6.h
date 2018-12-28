@@ -244,6 +244,31 @@ struct song_fx_block_override {
     enum xy_switch *xy;
 };
 
+static const cyaml_schema_field_t song_fx_block_override_fields_schema[] = {
+	CYAML_FIELD_STRING_PTR(
+		"name", CYAML_FLAG_POINTER,
+		struct song_fx_block_override, block_name, 0, CYAML_UNLIMITED
+	),
+	CYAML_FIELD_BOOL(
+		"on", CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER,
+		struct song_fx_block_override, on
+	),
+	CYAML_FIELD_ENUM(
+		"xy", CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER,
+		struct song_fx_block_override, xy,
+		xy_switch_strings, CYAML_ARRAY_LEN(xy_switch_strings)
+	),
+	CYAML_FIELD_END
+};
+
+static const cyaml_schema_value_t song_fx_block_override_schema = {
+	CYAML_VALUE_MAPPING(
+		CYAML_FLAG_DEFAULT,
+		struct song_fx_block_override,
+		song_fx_block_override_fields_schema
+	)
+};
+
 struct song_amp_tone_override {
     const char *tone_name;
     int *gain;
@@ -253,14 +278,71 @@ struct song_amp_tone_override {
     int blocks_count;
 };
 
-struct scene_amp_tone_selection /*: song_amp_tone_override*/ {
+static const cyaml_schema_field_t song_amp_tone_override_fields_schema[] = {
+	CYAML_FIELD_STRING_PTR(
+		"name", CYAML_FLAG_POINTER,
+		struct song_amp_tone_override, tone_name, 0, CYAML_UNLIMITED
+	),
+	CYAML_FIELD_INT(
+		"gain", CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER,
+		struct song_amp_tone_override, gain
+	),
+	CYAML_FIELD_FLOAT(
+		"volume", CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER,
+		struct song_amp_tone_override, volume_dB
+	),
+	CYAML_FIELD_SEQUENCE_COUNT(
+		"blocks", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
+		struct song_amp_tone_override, blocks, blocks_count,
+		&song_fx_block_override_schema, 0, CYAML_UNLIMITED
+	),
+	CYAML_FIELD_END
+};
+
+static const cyaml_schema_value_t song_amp_tone_override_schema = {
+	CYAML_VALUE_MAPPING(
+		CYAML_FLAG_DEFAULT,
+		struct song_amp_tone_override,
+		song_amp_tone_override_fields_schema
+	)
+};
+
+struct scene_amp_tone_selection {
     const char *tone_name;
-    const char *amp_name;
     int *gain;
     double *volume_dB;
 
     struct song_fx_block_override *blocks;
     int blocks_count;
+};
+
+static const cyaml_schema_field_t scene_amp_tone_selection_fields_schema[] = {
+	CYAML_FIELD_STRING_PTR(
+		"tone", CYAML_FLAG_POINTER,
+		struct scene_amp_tone_selection, tone_name, 0, CYAML_UNLIMITED
+	),
+	CYAML_FIELD_INT(
+		"gain", CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER,
+		struct scene_amp_tone_selection, gain
+	),
+	CYAML_FIELD_FLOAT(
+		"volume", CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER,
+		struct scene_amp_tone_selection, volume_dB
+	),
+	CYAML_FIELD_SEQUENCE_COUNT(
+		"blocks", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
+		struct scene_amp_tone_selection, blocks, blocks_count,
+		&song_fx_block_override_schema, 0, CYAML_UNLIMITED
+	),
+	CYAML_FIELD_END
+};
+
+static const cyaml_schema_value_t scene_amp_tone_selection_schema = {
+	CYAML_VALUE_MAPPING(
+		CYAML_FLAG_DEFAULT,
+		struct scene_amp_tone_selection,
+		scene_amp_tone_selection_fields_schema
+	)
 };
 
 struct scene_descriptor {
@@ -270,9 +352,47 @@ struct scene_descriptor {
     int amps_count;
 };
 
+static const cyaml_schema_field_t scene_descriptor_fields_schema[] = {
+	CYAML_FIELD_STRING_PTR(
+		"name", CYAML_FLAG_POINTER,
+		struct scene_descriptor, scene_name, 0, CYAML_UNLIMITED
+	),
+	CYAML_FIELD_SEQUENCE_COUNT(
+		"amps", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
+		struct scene_descriptor, amps, amps_count,
+		&scene_amp_tone_selection_schema, 0, CYAML_UNLIMITED
+	),
+	CYAML_FIELD_END
+};
+
+static const cyaml_schema_value_t scene_descriptor_schema = {
+	CYAML_VALUE_MAPPING(
+		CYAML_FLAG_DEFAULT,
+		struct scene_descriptor,
+		scene_descriptor_fields_schema
+	)
+};
+
 struct song_amp_overrides {
     struct song_amp_tone_override *tones;
     int tones_count;
+};
+
+static const cyaml_schema_field_t song_amp_overrides_fields_schema[] = {
+	CYAML_FIELD_SEQUENCE_COUNT(
+		"tones", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
+		struct song_amp_overrides, tones, tones_count,
+		&song_amp_tone_override_schema, 0, CYAML_UNLIMITED
+	),
+	CYAML_FIELD_END
+};
+
+static const cyaml_schema_value_t song_amp_overrides_schema = {
+	CYAML_VALUE_MAPPING(
+		CYAML_FLAG_DEFAULT,
+		struct song_amp_overrides,
+		song_amp_overrides_fields_schema
+	)
 };
 
 struct song {
@@ -316,18 +436,18 @@ static const cyaml_schema_field_t song_fields_schema[] = {
 		struct song, tempo
 	),
 
-	CYAML_FIELD_IGNORE("amps", CYAML_FLAG_OPTIONAL),
-	// CYAML_FIELD_SEQUENCE_COUNT(
-	// 	"amps", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
-	// 	struct song, amps, amps_count,
-	// 	&song_schema, 0, CYAML_UNLIMITED
-	// ),
-	CYAML_FIELD_IGNORE("scenes", CYAML_FLAG_OPTIONAL),
-	// CYAML_FIELD_SEQUENCE_COUNT(
-	// 	"scenes", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
-	// 	struct song, scenes, scenes_count,
-	// 	&song_schema, 0, CYAML_UNLIMITED
-	// ),
+	// CYAML_FIELD_IGNORE("amps", CYAML_FLAG_OPTIONAL),
+	CYAML_FIELD_SEQUENCE_COUNT(
+		"amps", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
+		struct song, amps, amps_count,
+		&song_amp_overrides_schema, 0, CYAML_UNLIMITED
+	),
+	// CYAML_FIELD_IGNORE("scenes", CYAML_FLAG_OPTIONAL),
+	CYAML_FIELD_SEQUENCE_COUNT(
+		"scenes", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
+		struct song, scenes, scenes_count,
+		&scene_descriptor_schema, 0, CYAML_UNLIMITED
+	),
 
 	CYAML_FIELD_END
 };
