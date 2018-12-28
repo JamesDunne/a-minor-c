@@ -239,81 +239,41 @@ static const cyaml_schema_value_t amp_definition_schema = {
 };
 
 #if 0
-public class SceneDescriptor
-{
-    [YamlIgnore]
-    public Song Song { get; set; }
-    [YamlIgnore]
-    public int SceneNumber { get; set; }
-
-    public string Name { get; set; }
-    public List<SceneAmpToneSelection> Amps { get; set; }
+struct song_fx_block_override {
+    string name;
+    bool? on;
+    xy_switch? xy;
 }
 
-public class SongFXBlockOverride
-{
-    public string Name { get; set; }
-    public bool? On { get; set; }
-    [YamlMember(Alias = "Xy")]
-    public XYSwitch? XY { get; set; }
+struct song_amp_tone_override {
+    string name;
+    int? gain;
+    double? volume_dB;
+
+    struct song_fx_block_override *blocks;
+    int blocks_count;
 }
 
-public class SongAmpToneOverride
-{
-    [YamlIgnore]
-    public AmpToneDefinition AmpToneDefinition { get; set; }
+struct scene_amp_tone_selection /*: song_amp_tone_override*/ {
+    string tone;
+    string name;
+    int? gain;
+    double? volume_dB;
 
-    public string Name { get; set; }
-    public int? Gain { get; set; }
-    [YamlMember(Alias = "Volume")]
-    public double? VolumeDB { get; set; }
-    [YamlIgnore]
-    public int? Volume { get; set; }
-
-    public List<SongFXBlockOverride> Blocks { get; set; }
+    struct song_fx_block_override *blocks;
+    int blocks_count;
 }
 
-public class SongAmpOverrides
-{
-    [YamlIgnore]
-    public AmpDefinition AmpDefinition { get; set; }
-    [YamlIgnore]
-    public int AmpNumber { get; set; }
+struct scene_descriptor {
+    string name;
 
-    public List<SongAmpToneOverride> Tones { get; set; }
+    struct scene_amp_tone_selection *amps;
+    int amps_count;
 }
 
-public class SceneAmpToneSelection : SongAmpToneOverride
-{
-    [YamlIgnore]
-    public int AmpNumber { get; set; }
-
-    public string Tone { get; set; }
-}
-
-public class Song
-{
-    [YamlIgnore]
-    public MidiProgram MidiProgram { get; set; }
-
-    public string Name { get; set; }
-    public string ShortName { get; internal set; }
-    public List<string> AlternateNames { get; internal set; }
-    public string WhoStarts { get; internal set; }
-
-    public int Tempo { get; set; }
-
-    public List<SongAmpOverrides> Amps { get; set; }
-
-    [YamlMember(Alias = "scenes", ApplyNamingConventions = false)]
-    public List<SceneDescriptor> SceneDescriptors { get; set; }
-
-    public bool MatchesName(string match)
-    {
-        return String.Compare(match, Name, true) == 0
-            || String.Compare(match, ShortName, true) == 0
-            || AlternateNames.Any(name => String.Compare(match, name, true) == 0);
-    }
+struct song_amp_overrides {
+    struct song_amp_tone_override *tones;
+    int tones_count;
 }
 #endif
 
