@@ -389,7 +389,7 @@ struct midi_program {
 	int amps_count;
 
 	struct song *songs;
-	int song_count;
+	int songs_count;
 };
 
 static const cyaml_schema_field_t midi_program_fields_schema[] = {
@@ -403,12 +403,12 @@ static const cyaml_schema_field_t midi_program_fields_schema[] = {
 		&amp_definition_schema, 0, CYAML_UNLIMITED
 	),
 
-	CYAML_FIELD_IGNORE("songs", CYAML_FLAG_OPTIONAL),
-	// CYAML_FIELD_SEQUENCE_COUNT(
-	// 	"songs", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
-	// 	struct midi_program, songs, song_count,
-	// 	&song_schema, 0, CYAML_UNLIMITED
-	// ),
+	// CYAML_FIELD_IGNORE("songs", CYAML_FLAG_OPTIONAL),
+	CYAML_FIELD_SEQUENCE_COUNT(
+		"songs", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
+		struct midi_program, songs, songs_count,
+		&song_schema, 0, CYAML_UNLIMITED
+	),
 
 	CYAML_FIELD_END
 };
