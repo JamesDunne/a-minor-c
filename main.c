@@ -99,6 +99,25 @@ int main(int argc, char **argv) {
 			}
 
 			// scenes
+			for (int c = 0; c < song->scenes_count; c++) {
+				const struct scene_descriptor *scene = &song->scenes[c];
+
+				printf("    Scene[%d]\n", c+1);
+				printf("      Name: %s\n", scene->scene_name);
+
+				for (int a = 0; a < scene->amps_count; a++) {
+					const struct scene_amp_tone_selection *tone = &scene->amps[a];
+
+					printf("      Amp[%s]\n", midi_program->amps[a].amp_name);
+					printf("        Tone: %s\n", tone->tone_name);
+					if (tone->gain) {
+						printf("          Gain:   %02x\n", *tone->gain);
+					}
+					if (tone->volume_dB) {
+						printf("          Volume: %.2f\n", *tone->volume_dB);
+					}
+				}
+			}
 		}
 	}
 
