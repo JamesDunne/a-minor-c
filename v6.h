@@ -90,31 +90,46 @@ public class FXBlock
     [YamlMember(Alias = "Xy")]
     public XYSwitch? XY { get; set; }
 }
-
-public class AmpToneDefinition
-{
-    [YamlIgnore]
-    public AmpDefinition AmpDefinition { get; set; }
-
-    public string Name { get; set; }
-    public int Gain { get; set; }
-    [YamlMember(Alias = "Volume")]
-    public double VolumeDB { get; set; }
-    [YamlIgnore]
-    public int Volume { get; set; }
-
-    public List<FXBlock> Blocks { get; set; }
-}
-
-public class FXBlockDefinition
-{
-    public string Name { get; set; }
-    [YamlMember(Alias = "EnabledSwitchCc")]
-    public int EnabledSwitchCC { get; set; }
-    [YamlMember(Alias = "XySwitchCc")]
-    public int? XYSwitchCC { get; set; }
-}
 #endif
+
+struct amp_tone_definition {
+	const char *name;
+	int gain;
+	double volume_dB; // volume
+
+	struct fx_block *blocks;
+	int blocks_count;
+};
+
+static const cyaml_schema_field_t amp_tone_definition_fields_schema[] = {
+	CYAML_FIELD_STRING_PTR(
+		"name", CYAML_FLAG_POINTER,
+		struct amp_tone_definition, name, 0, CYAML_UNLIMITED
+	),
+	CYAML_FIELD_INT(
+		"gain", CYAML_FLAG_OPTIONAL,
+		struct amp_tone_definition, gain
+	),
+	CYAML_FIELD_FLOAT(
+		"volume", CYAML_FLAG_OPTIONAL,
+		struct amp_tone_definition, volume_dB
+	),
+	CYAML_FIELD_IGNORE("blocks", CYAML_FLAG_OPTIONAL),
+	// CYAML_FIELD_SEQUENCE_COUNT(
+	// 	"blocks", CYAML_FLAG_POINTER,
+	// 	struct amp_tone_definition, blocks, blocks_count,
+	// 	&amp_tone_definition_schema, 0, CYAML_UNLIMITED
+	// ),
+	CYAML_FIELD_END
+};
+
+static const cyaml_schema_value_t amp_tone_definition_schema = {
+	CYAML_VALUE_MAPPING(
+		CYAML_FLAG_DEFAULT,
+		struct amp_tone_definition,
+		amp_tone_definition_fields_schema
+	)
+};
 
 struct fx_block_definition {
     const char *name;
@@ -160,9 +175,9 @@ struct amp_definition {
 	struct fx_block_definition *blocks;
 	int blocks_count;
 
-	// // Available general tones for this amp and their block settings, e.g. clean, dirty, acoustic:
-	// struct amp_tone_definition *tones;
-	// int tones_count;
+	// Available general tones for this amp and their block settings, e.g. clean, dirty, acoustic:
+	struct amp_tone_definition *tones;
+	int tones_count;
 };
 
 static const cyaml_schema_field_t amp_definition_fields_schema[] = {
@@ -184,12 +199,12 @@ static const cyaml_schema_field_t amp_definition_fields_schema[] = {
 		struct amp_definition, blocks, blocks_count,
 		&fx_block_definition_schema, 0, CYAML_UNLIMITED
 	),
-	CYAML_FIELD_IGNORE("tones", CYAML_FLAG_OPTIONAL),
-	// CYAML_FIELD_SEQUENCE_COUNT(
-	// 	"tones", CYAML_FLAG_POINTER,
-	// 	struct amp_definition, tones, tones_count,
-	// 	&amp_tone_definition_schema, 0, CYAML_UNLIMITED
-	// ),
+	// CYAML_FIELD_IGNORE("tones", CYAML_FLAG_OPTIONAL),
+	CYAML_FIELD_SEQUENCE_COUNT(
+		"tones", CYAML_FLAG_POINTER,
+		struct amp_definition, tones, tones_count,
+		&amp_tone_definition_schema, 0, CYAML_UNLIMITED
+	),
 	CYAML_FIELD_END
 };
 

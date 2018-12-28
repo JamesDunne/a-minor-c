@@ -30,7 +30,27 @@ int main(int argc, char **argv) {
 
 	for (int i = 0; i < midi_programs->midi_programs_count; i++) {
 		const struct midi_program *midi_program = &midi_programs->midi_programs[i];
+
 		printf("MIDI: %3d\n", midi_program->program_number);
+		for (int a = 0; a < midi_program->amps_count; a++) {
+			const struct amp_definition *amp = &midi_program->amps[a];
+
+			printf("  Amp[%2d]\n", a);
+			printf("    Name:      \"%s\"\n", amp->name);
+			printf("    Gain CC:   %3d\n", amp->gain_controller_cc);
+			printf("    Volume CC: %3d\n", amp->volume_controller_cc);
+
+			printf("    Blocks:\n");
+			for (int b = 0; b < amp->blocks_count; b++) {
+				const struct fx_block_definition *block = &amp->blocks[b];
+
+				printf("      Name:         \"%s\"\n", block->name);
+				printf("      Enabled CC:   %3d\n", block->enabled_switch_cc);
+				if (block->xy_switch_cc) {
+					printf("      XY Switch CC: %3d\n", *block->xy_switch_cc);
+				}
+			}
+		}
 	}
 
 	// cyaml_free(&config, &setlists_schema, setlists, 0);
