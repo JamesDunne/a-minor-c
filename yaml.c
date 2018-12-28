@@ -7,6 +7,7 @@ static const cyaml_config_t config = {
 	.log_level = CYAML_LOG_WARNING, /* Logging errors and warnings only. */
 	.log_fn = cyaml_log,            /* Use the default logging function. */
 	.mem_fn = cyaml_mem,            /* Use the default memory allocator. */
+	.flags = CYAML_CFG_IGNORE_UNKNOWN_KEYS,
 };
 
 bool load_setlists(struct setlists **setlists) {

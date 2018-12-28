@@ -154,13 +154,15 @@ static const cyaml_schema_field_t amp_definition_fields_schema[] = {
 		"volume_controller_cc", CYAML_FLAG_OPTIONAL,
 		struct amp_definition, volume_controller_cc
 	),
+	CYAML_FIELD_IGNORE("blocks", CYAML_FLAG_OPTIONAL),
 	// CYAML_FIELD_SEQUENCE_COUNT(
-	// 	"blocks", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
+	// 	"blocks", CYAML_FLAG_POINTER,
 	// 	struct amp_definition, blocks, blocks_count,
 	// 	&fx_block_definition_schema, 0, CYAML_UNLIMITED
 	// ),
+	CYAML_FIELD_IGNORE("tones", CYAML_FLAG_OPTIONAL),
 	// CYAML_FIELD_SEQUENCE_COUNT(
-	// 	"tones", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
+	// 	"tones", CYAML_FLAG_POINTER,
 	// 	struct amp_definition, tones, tones_count,
 	// 	&amp_tone_definition_schema, 0, CYAML_UNLIMITED
 	// ),
@@ -276,6 +278,7 @@ static const cyaml_schema_field_t midi_program_fields_schema[] = {
 		struct midi_program, amps, amps_count,
 		&amp_definition_schema, 0, CYAML_UNLIMITED
 	),
+	CYAML_FIELD_IGNORE("songs", CYAML_FLAG_OPTIONAL),
 	// CYAML_FIELD_SEQUENCE_COUNT(
 	// 	"songs", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
 	// 	struct midi_program, songs, song_count,
