@@ -12,14 +12,8 @@ struct setlist
 	bool print;
 
 	//[YamlMember(Alias = "Songs")]
-	const char **songNames;
-	int songCount;
-};
-
-struct setlists
-{
-	struct setlist *sets;
-	int setCount;
+	const char **song_names;
+	int song_names_count;
 };
 
 static const cyaml_schema_value_t string_ptr_schema = {
@@ -45,7 +39,7 @@ static const cyaml_schema_field_t setlist_fields_schema[] = {
 	),
 	CYAML_FIELD_SEQUENCE_COUNT(
 		"songs", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
-		struct setlist, songNames, songCount,
+		struct setlist, song_names, song_names_count,
 		&string_ptr_schema, 0, CYAML_UNLIMITED
 	),
 	CYAML_FIELD_END
@@ -59,10 +53,16 @@ static const cyaml_schema_value_t setlist_schema = {
 	)
 };
 
+struct setlists
+{
+	struct setlist *sets;
+	int set_count;
+};
+
 static const cyaml_schema_field_t setlists_fields_schema[] = {
 	CYAML_FIELD_SEQUENCE_COUNT(
 		"sets", CYAML_FLAG_POINTER,
-		struct setlists, sets, setCount,
+		struct setlists, sets, set_count,
 		&setlist_schema, 0, CYAML_UNLIMITED
 	),
 	CYAML_FIELD_END
@@ -77,8 +77,38 @@ static const cyaml_schema_value_t setlists_schema = {
 };
 
 #if 0
-struct FXBlockDefinition
+public enum XYSwitch
 {
+    X,
+    Y
+}
+
+public class FXBlock
+{
+    public string Name { get; set; }
+    public bool? On { get; set; }
+    [YamlMember(Alias = "Xy")]
+    public XYSwitch? XY { get; set; }
+}
+
+public class AmpToneDefinition
+{
+    [YamlIgnore]
+    public AmpDefinition AmpDefinition { get; set; }
+
+    public string Name { get; set; }
+    public int Gain { get; set; }
+    [YamlMember(Alias = "Volume")]
+    public double VolumeDB { get; set; }
+    [YamlIgnore]
+    public int Volume { get; set; }
+
+    public List<FXBlock> Blocks { get; set; }
+}
+
+public class FXBlockDefinition
+{
+    public string Name { get; set; }
     [YamlMember(Alias = "EnabledSwitchCc")]
     public int EnabledSwitchCC { get; set; }
     [YamlMember(Alias = "XySwitchCc")]
@@ -95,7 +125,7 @@ public class AmpDefinition
     public string Name { get; set; }
 
     // Available FX blocks for this amp in this MIDI program, including amp, cab, gate, etc.:
-    public Dictionary<string, FXBlockDefinition> Blocks { get; set; }
+    public List<FXBlockDefinition> Blocks { get; set; }
 
     // MIDI CC of external controller that is mapped to gain:
     [YamlMember(Alias = "GainControllerCc")]
@@ -105,73 +135,64 @@ public class AmpDefinition
     public int VolumeControllerCC { get; set; }
 
     // Available general tones for this amp and their block settings, e.g. clean, dirty, acoustic:
-    public Dictionary<string, AmpToneDefinition> Tones { get; set; }
+    public List<AmpToneDefinition> Tones { get; set; }
 }
 #endif
 
-struct ampDefinition {
+struct amp_definition {
 	const char *name;
 
-	
+	// TODO: generalize MIDI CCs with slider controls? or add gate input threshold as a CC
+
+    // MIDI CC of external controller that is mapped to gain:
+    int gain_controller_cc;
+    // MIDI CC of external controller that is mapped to volume:
+    int volume_controller_cc;
+
+    // Available FX blocks for this amp in this MIDI program, including amp, cab, gate, etc.:
+    struct fx_block_definition *blocks;
+    int blocks_count;
+
+    // Available general tones for this amp and their block settings, e.g. clean, dirty, acoustic:
+    struct amp_tone_definition *tones;
+    int tones_count;
+};
+
+static const cyaml_schema_field_t amp_definition_fields_schema[] = {
+	CYAML_FIELD_STRING_PTR(
+		"name", CYAML_FLAG_POINTER,
+		struct amp_definition, name, 0, CYAML_UNLIMITED
+	),
+	CYAML_FIELD_UINT(
+		"gain_controller_cc", CYAML_FLAG_OPTIONAL,
+		struct amp_definition, gain_controller_cc
+	),
+	CYAML_FIELD_UINT(
+		"volume_controller_cc", CYAML_FLAG_OPTIONAL,
+		struct amp_definition, volume_controller_cc
+	),
+	CYAML_FIELD_SEQUENCE_COUNT(
+		"blocks", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
+		struct amp_definition, blocks, blocks_count,
+		&fx_block_definition_schema, 0, CYAML_UNLIMITED
+	),
+	CYAML_FIELD_SEQUENCE_COUNT(
+		"tones", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
+		struct amp_definition, tones, tones_count,
+		&amp_tone_definition_schema, 0, CYAML_UNLIMITED
+	),
+	CYAML_FIELD_END
+};
+
+static const cyaml_schema_value_t amp_definition_schema = {
+	CYAML_VALUE_MAPPING(
+		CYAML_FLAG_POINTER,
+		struct amp_definition,
+		amp_definition_fields_schema
+	)
 };
 
 #if 0
-public enum XYSwitch
-{
-    X,
-    Y
-}
-
-public class FXBlock
-{
-    public bool? On { get; set; }
-    [YamlMember(Alias = "Xy")]
-    public XYSwitch? XY { get; set; }
-}
-
-public class AmpToneDefinition
-{
-    [YamlIgnore]
-    public AmpDefinition AmpDefinition { get; set; }
-
-    public int Gain { get; set; }
-    [YamlMember(Alias = "Volume")]
-    public double VolumeDB { get; set; }
-    [YamlIgnore]
-    public int Volume { get; set; }
-
-    public Dictionary<string, FXBlock> Blocks { get; set; }
-}
-
-public class SongFXBlockOverride
-{
-    public bool? On { get; set; }
-    [YamlMember(Alias = "Xy")]
-    public XYSwitch? XY { get; set; }
-}
-
-public class SongAmpToneOverride
-{
-    [YamlIgnore]
-    public AmpToneDefinition AmpToneDefinition { get; set; }
-
-    public int? Gain { get; set; }
-    [YamlMember(Alias = "Volume")]
-    public double? VolumeDB { get; set; }
-    [YamlIgnore]
-    public int? Volume { get; set; }
-
-    public Dictionary<string, SongFXBlockOverride> Blocks { get; set; }
-}
-
-public class SceneAmpToneSelection : SongAmpToneOverride
-{
-    [YamlIgnore]
-    public int AmpNumber { get; set; }
-
-    public string Tone { get; set; }
-}
-
 public class SceneDescriptor
 {
     [YamlIgnore]
@@ -183,6 +204,29 @@ public class SceneDescriptor
     public List<SceneAmpToneSelection> Amps { get; set; }
 }
 
+public class SongFXBlockOverride
+{
+    public string Name { get; set; }
+    public bool? On { get; set; }
+    [YamlMember(Alias = "Xy")]
+    public XYSwitch? XY { get; set; }
+}
+
+public class SongAmpToneOverride
+{
+    [YamlIgnore]
+    public AmpToneDefinition AmpToneDefinition { get; set; }
+
+    public string Name { get; set; }
+    public int? Gain { get; set; }
+    [YamlMember(Alias = "Volume")]
+    public double? VolumeDB { get; set; }
+    [YamlIgnore]
+    public int? Volume { get; set; }
+
+    public List<SongFXBlockOverride> Blocks { get; set; }
+}
+
 public class SongAmpOverrides
 {
     [YamlIgnore]
@@ -190,7 +234,15 @@ public class SongAmpOverrides
     [YamlIgnore]
     public int AmpNumber { get; set; }
 
-    public Dictionary<string, SongAmpToneOverride> Tones { get; set; }
+    public List<SongAmpToneOverride> Tones { get; set; }
+}
+
+public class SceneAmpToneSelection : SongAmpToneOverride
+{
+    [YamlIgnore]
+    public int AmpNumber { get; set; }
+
+    public string Tone { get; set; }
 }
 
 public class Song
@@ -217,69 +269,83 @@ public class Song
             || AlternateNames.Any(name => String.Compare(match, name, true) == 0);
     }
 }
+
+public class MidiProgram
+{
+    [YamlMember(Alias = "midi", ApplyNamingConventions = false)]
+    public int ProgramNumber { get; set; }
+
+    public List<AmpDefinition> Amps { get; set; }
+
+    public List<Song> Songs { get; set; }
+}
+
+public class AllPrograms
+{
+    public List<MidiProgram> MidiPrograms { get; set; }
+}
 #endif
 
-struct midiProgram
+struct midi_program
 {
 	// [YamlMember(Alias = "midi", ApplyNamingConventions = false)]
-	int programNumber;
+	int program_number;
 
-	struct *ampDefinition amps;
-	int ampCount;
+	struct amp_definition *amps;
+	int amps_count;
 
 	// struct *song songs;
-	// int songCount;
+	// int song_count;
 };
 
-static const cyaml_schema_field_t midiProgram_fields_schema[] = {
+static const cyaml_schema_field_t midi_program_fields_schema[] = {
 	CYAML_FIELD_UINT(
 		"midi", CYAML_FLAG_OPTIONAL,
-		struct midiProgram, programNumber
+		struct midi_program, program_number
 	),
 	CYAML_FIELD_SEQUENCE_COUNT(
 		"amps", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
-		struct midiProgram, amps, ampCount,
-		&amp_schema, 0, CYAML_UNLIMITED
+		struct midi_program, amps, amps_count,
+		&amp_definition_schema, 0, CYAML_UNLIMITED
 	),
-	CYAML_FIELD_SEQUENCE_COUNT(
-		"songs", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
-		struct midiProgram, songs, songCount,
-		&song_schema, 0, CYAML_UNLIMITED
-	),
+	// CYAML_FIELD_SEQUENCE_COUNT(
+	// 	"songs", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
+	// 	struct midi_program, songs, song_count,
+	// 	&song_schema, 0, CYAML_UNLIMITED
+	// ),
 	CYAML_FIELD_END
 };
 
-static const cyaml_schema_value_t midiProgram_schema = {
+static const cyaml_schema_value_t midi_program_schema = {
 	CYAML_VALUE_MAPPING(
 		CYAML_FLAG_POINTER,
-		struct midiProgram,
-		midiProgram_fields_schema
+		struct midi_program,
+		midi_program_fields_schema
 	)
 };
 
-struct midiPrograms
+struct midi_programs
 {
-    struct midiProgram *midiPrograms;
-    int midiProgramCount;
+    struct midi_program *midi_programs;
+    int midi_programs_count;
 };
 
-static const cyaml_schema_field_t midiPrograms_fields_schema[] = {
+static const cyaml_schema_field_t midi_programs_fields_schema[] = {
 	CYAML_FIELD_SEQUENCE_COUNT(
 		"midi_programs", CYAML_FLAG_POINTER,
-		struct midiPrograms, midiPrograms, midiProgramCount,
-		&midiProgram_schema, 0, CYAML_UNLIMITED
+		struct midi_programs, midi_programs, midi_programs_count,
+		&midi_program_schema, 0, CYAML_UNLIMITED
 	),
 	CYAML_FIELD_END
 };
 
-static const cyaml_schema_value_t midiPrograms_schema = {
+static const cyaml_schema_value_t midi_programs_schema = {
 	CYAML_VALUE_MAPPING(
 		CYAML_FLAG_POINTER,
-		struct midiPrograms,
-		midiPrograms_fields_schema
+		struct midi_programs,
+		midi_programs_fields_schema
 	)
 };
-
 
 #if 0
 public class LiveFX
@@ -308,6 +374,8 @@ public class LiveAmp
 
     public List<LiveFX> FX;
 
+#if !TRANSLATOR
     public float Volume => (float)Controller.MIDItoDB(VolumeMIDI);
+#endif
 }
 #endif

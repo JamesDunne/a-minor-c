@@ -27,14 +27,14 @@ bool load_setlists(struct setlists **setlists) {
 	return true;
 }
 
-bool load_programs(struct midiPrograms **midiPrograms) {
+bool load_programs(struct midi_programs **midi_programs) {
 	cyaml_err_t err;
 
 	err = cyaml_load_file(
 		"all-programs-v6.yml",
 		&config,
-		&midiPrograms_schema,
-		(void **) midiPrograms,
+		&midi_programs_schema,
+		(void **) midi_programs,
 		NULL
 	);
 	if (err != CYAML_OK) {
