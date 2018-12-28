@@ -81,7 +81,7 @@ enum xy_switch {
 };
 
 struct fx_block {
-	const char *name;
+	const char *block_name;
 	bool *on;
 	enum xy_switch *xy;
 };
@@ -94,7 +94,7 @@ static const cyaml_strval_t xy_switch_strings[] = {
 static const cyaml_schema_field_t fx_block_fields_schema[] = {
 	CYAML_FIELD_STRING_PTR(
 		"name", CYAML_FLAG_POINTER,
-		struct fx_block, name, 0, CYAML_UNLIMITED
+		struct fx_block, block_name, 0, CYAML_UNLIMITED
 	),
 	CYAML_FIELD_BOOL(
 		"on", CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER,
@@ -117,7 +117,7 @@ static const cyaml_schema_value_t fx_block_schema = {
 };
 
 struct amp_tone_definition {
-	const char *name;
+	const char *tone_name;
 	int gain;
 	double volume_dB; // volume
 
@@ -128,7 +128,7 @@ struct amp_tone_definition {
 static const cyaml_schema_field_t amp_tone_definition_fields_schema[] = {
 	CYAML_FIELD_STRING_PTR(
 		"name", CYAML_FLAG_POINTER,
-		struct amp_tone_definition, name, 0, CYAML_UNLIMITED
+		struct amp_tone_definition, tone_name, 0, CYAML_UNLIMITED
 	),
 	CYAML_FIELD_INT(
 		"gain", CYAML_FLAG_OPTIONAL,
@@ -156,7 +156,7 @@ static const cyaml_schema_value_t amp_tone_definition_schema = {
 };
 
 struct fx_block_definition {
-	const char *name;
+	const char *block_name;
 	int enabled_switch_cc;
 	int *xy_switch_cc;     // optional
 };
@@ -164,7 +164,7 @@ struct fx_block_definition {
 static const cyaml_schema_field_t fx_block_definition_fields_schema[] = {
 	CYAML_FIELD_STRING_PTR(
 		"name", CYAML_FLAG_POINTER,
-		struct fx_block_definition, name, 0, CYAML_UNLIMITED
+		struct fx_block_definition, block_name, 0, CYAML_UNLIMITED
 	),
 	CYAML_FIELD_UINT(
 		"enabled_switch_cc", CYAML_FLAG_OPTIONAL,
@@ -186,7 +186,7 @@ static const cyaml_schema_value_t fx_block_definition_schema = {
 };
 
 struct amp_definition {
-	const char *name;
+	const char *amp_name;
 
 	// TODO: generalize MIDI CCs with slider controls? or add gate input threshold as a CC
 
@@ -207,7 +207,7 @@ struct amp_definition {
 static const cyaml_schema_field_t amp_definition_fields_schema[] = {
 	CYAML_FIELD_STRING_PTR(
 		"name", CYAML_FLAG_POINTER,
-		struct amp_definition, name, 0, CYAML_UNLIMITED
+		struct amp_definition, amp_name, 0, CYAML_UNLIMITED
 	),
 	CYAML_FIELD_UINT(
 		"gain_controller_cc", CYAML_FLAG_OPTIONAL,
@@ -239,13 +239,13 @@ static const cyaml_schema_value_t amp_definition_schema = {
 };
 
 struct song_fx_block_override {
-    const char *name;
+    const char *block_name;
     bool *on;
     enum xy_switch *xy;
 };
 
 struct song_amp_tone_override {
-    const char *name;
+    const char *tone_name;
     int *gain;
     double *volume_dB;
 
@@ -254,8 +254,8 @@ struct song_amp_tone_override {
 };
 
 struct scene_amp_tone_selection /*: song_amp_tone_override*/ {
-    const char *tone;
-    const char *name;
+    const char *tone_name;
+    const char *amp_name;
     int *gain;
     double *volume_dB;
 
@@ -264,7 +264,7 @@ struct scene_amp_tone_selection /*: song_amp_tone_override*/ {
 };
 
 struct scene_descriptor {
-    const char *name;
+    const char *scene_name;
 
     struct scene_amp_tone_selection *amps;
     int amps_count;
