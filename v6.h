@@ -11,7 +11,6 @@ struct setlist
 	bool active;
 	bool print;
 
-	//[YamlMember(Alias = "Songs")]
 	const char **song_names;
 	int song_names_count;
 };
@@ -218,13 +217,11 @@ static const cyaml_schema_field_t amp_definition_fields_schema[] = {
 		"volume_controller_cc", CYAML_FLAG_OPTIONAL,
 		struct amp_definition, volume_controller_cc
 	),
-	// CYAML_FIELD_IGNORE("blocks", CYAML_FLAG_OPTIONAL),
 	CYAML_FIELD_SEQUENCE_COUNT(
 		"blocks", CYAML_FLAG_POINTER,
 		struct amp_definition, blocks, blocks_count,
 		&fx_block_definition_schema, 0, CYAML_UNLIMITED
 	),
-	// CYAML_FIELD_IGNORE("tones", CYAML_FLAG_OPTIONAL),
 	CYAML_FIELD_SEQUENCE_COUNT(
 		"tones", CYAML_FLAG_POINTER,
 		struct amp_definition, tones, tones_count,
@@ -320,16 +317,79 @@ public class Song
 }
 #endif
 
-struct midi_program
-{
+struct song {
+    const char *name;
+    const char *short_name;
+    const char **alternate_names;
+    int alternate_names_count;
+
+    const char *who_starts;
+
+    int tempo;
+
+    struct song_amp_overrides *amps;
+    int amps_count;
+
+    struct scene_descriptor *scenes;
+    int scenes_count;
+};
+
+static const cyaml_schema_field_t song_fields_schema[] = {
+	CYAML_FIELD_STRING_PTR(
+		"name", CYAML_FLAG_POINTER,
+		struct song, name, 0, CYAML_UNLIMITED
+	),
+	CYAML_FIELD_STRING_PTR(
+		"short_name", CYAML_FLAG_POINTER,
+		struct song, short_name, 0, CYAML_UNLIMITED
+	),
+	CYAML_FIELD_SEQUENCE_COUNT(
+		"alternate_names", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
+		struct song, alternate_names, alternate_names_count,
+		&string_ptr_schema, 0, CYAML_UNLIMITED
+	),
+	CYAML_FIELD_STRING_PTR(
+		"who_starts", CYAML_FLAG_POINTER,
+		struct song, who_starts, 0, CYAML_UNLIMITED
+	),
+
+	CYAML_FIELD_INT(
+		"tempo", CYAML_FLAG_OPTIONAL,
+		struct song, tempo
+	),
+
+	CYAML_FIELD_IGNORE("amps", CYAML_FLAG_OPTIONAL),
+	// CYAML_FIELD_SEQUENCE_COUNT(
+	// 	"amps", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
+	// 	struct song, amps, amps_count,
+	// 	&song_schema, 0, CYAML_UNLIMITED
+	// ),
+	CYAML_FIELD_IGNORE("scenes", CYAML_FLAG_OPTIONAL),
+	// CYAML_FIELD_SEQUENCE_COUNT(
+	// 	"scenes", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
+	// 	struct song, scenes, scenes_count,
+	// 	&song_schema, 0, CYAML_UNLIMITED
+	// ),
+
+	CYAML_FIELD_END
+};
+
+static const cyaml_schema_value_t song_schema = {
+	CYAML_VALUE_MAPPING(
+		CYAML_FLAG_DEFAULT,
+		struct song,
+		song_fields_schema
+	)
+};
+
+struct midi_program {
 	int program_number;
 
 	struct amp_definition *amps;
 	int amps_count;
 
-	// TODO
-	// struct *song songs;
-	// int song_count;
+	struct song *songs;
+	int song_count;
 };
 
 static const cyaml_schema_field_t midi_program_fields_schema[] = {
