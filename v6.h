@@ -56,13 +56,13 @@ static const cyaml_schema_value_t setlist_schema = {
 struct setlists
 {
 	struct setlist *sets;
-	int set_count;
+	int sets_count;
 };
 
 static const cyaml_schema_field_t setlists_fields_schema[] = {
 	CYAML_FIELD_SEQUENCE_COUNT(
 		"sets", CYAML_FLAG_POINTER,
-		struct setlists, sets, set_count,
+		struct setlists, sets, sets_count,
 		&setlist_schema, 0, CYAML_UNLIMITED
 	),
 	CYAML_FIELD_END
@@ -114,48 +114,31 @@ public class FXBlockDefinition
     [YamlMember(Alias = "XySwitchCc")]
     public int? XYSwitchCC { get; set; }
 }
-
-public class AmpDefinition
-{
-    [YamlIgnore]
-    public MidiProgram MidiProgram { get; set; }
-    [YamlIgnore]
-    public int AmpNumber { get; set; }
-
-    public string Name { get; set; }
-
-    // Available FX blocks for this amp in this MIDI program, including amp, cab, gate, etc.:
-    public List<FXBlockDefinition> Blocks { get; set; }
-
-    // MIDI CC of external controller that is mapped to gain:
-    [YamlMember(Alias = "GainControllerCc")]
-    public int GainControllerCC { get; set; }
-    // MIDI CC of external controller that is mapped to volume:
-    [YamlMember(Alias = "VolumeControllerCc")]
-    public int VolumeControllerCC { get; set; }
-
-    // Available general tones for this amp and their block settings, e.g. clean, dirty, acoustic:
-    public List<AmpToneDefinition> Tones { get; set; }
-}
 #endif
+
+struct fx_block_definition {
+    const char *name;
+    int enabled_switch_cc;
+    int *xy_switch_cc;     // optional
+};
 
 struct amp_definition {
 	const char *name;
 
 	// TODO: generalize MIDI CCs with slider controls? or add gate input threshold as a CC
 
-    // MIDI CC of external controller that is mapped to gain:
-    int gain_controller_cc;
-    // MIDI CC of external controller that is mapped to volume:
-    int volume_controller_cc;
+	// MIDI CC of external controller that is mapped to gain:
+	int gain_controller_cc;
+	// MIDI CC of external controller that is mapped to volume:
+	int volume_controller_cc;
 
-    // Available FX blocks for this amp in this MIDI program, including amp, cab, gate, etc.:
-    struct fx_block_definition *blocks;
-    int blocks_count;
+	// // Available FX blocks for this amp in this MIDI program, including amp, cab, gate, etc.:
+	// struct fx_block_definition *blocks;
+	// int blocks_count;
 
-    // Available general tones for this amp and their block settings, e.g. clean, dirty, acoustic:
-    struct amp_tone_definition *tones;
-    int tones_count;
+	// // Available general tones for this amp and their block settings, e.g. clean, dirty, acoustic:
+	// struct amp_tone_definition *tones;
+	// int tones_count;
 };
 
 static const cyaml_schema_field_t amp_definition_fields_schema[] = {
@@ -171,16 +154,16 @@ static const cyaml_schema_field_t amp_definition_fields_schema[] = {
 		"volume_controller_cc", CYAML_FLAG_OPTIONAL,
 		struct amp_definition, volume_controller_cc
 	),
-	CYAML_FIELD_SEQUENCE_COUNT(
-		"blocks", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
-		struct amp_definition, blocks, blocks_count,
-		&fx_block_definition_schema, 0, CYAML_UNLIMITED
-	),
-	CYAML_FIELD_SEQUENCE_COUNT(
-		"tones", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
-		struct amp_definition, tones, tones_count,
-		&amp_tone_definition_schema, 0, CYAML_UNLIMITED
-	),
+	// CYAML_FIELD_SEQUENCE_COUNT(
+	// 	"blocks", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
+	// 	struct amp_definition, blocks, blocks_count,
+	// 	&fx_block_definition_schema, 0, CYAML_UNLIMITED
+	// ),
+	// CYAML_FIELD_SEQUENCE_COUNT(
+	// 	"tones", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
+	// 	struct amp_definition, tones, tones_count,
+	// 	&amp_tone_definition_schema, 0, CYAML_UNLIMITED
+	// ),
 	CYAML_FIELD_END
 };
 
@@ -269,31 +252,16 @@ public class Song
             || AlternateNames.Any(name => String.Compare(match, name, true) == 0);
     }
 }
-
-public class MidiProgram
-{
-    [YamlMember(Alias = "midi", ApplyNamingConventions = false)]
-    public int ProgramNumber { get; set; }
-
-    public List<AmpDefinition> Amps { get; set; }
-
-    public List<Song> Songs { get; set; }
-}
-
-public class AllPrograms
-{
-    public List<MidiProgram> MidiPrograms { get; set; }
-}
 #endif
 
 struct midi_program
 {
-	// [YamlMember(Alias = "midi", ApplyNamingConventions = false)]
 	int program_number;
 
 	struct amp_definition *amps;
 	int amps_count;
 
+	// TODO
 	// struct *song songs;
 	// int song_count;
 };
@@ -374,8 +342,6 @@ public class LiveAmp
 
     public List<LiveFX> FX;
 
-#if !TRANSLATOR
     public float Volume => (float)Controller.MIDItoDB(VolumeMIDI);
-#endif
 }
 #endif

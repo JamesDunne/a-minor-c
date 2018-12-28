@@ -6,14 +6,15 @@
 int main(int argc, char **argv) {
 	struct setlists *setlists = NULL;
 	struct midi_programs *midi_programs = NULL;
+	bool err = false;
 
 	// Load setlists:
-	bool err = load_setlists(&setlists);
+	err = load_setlists(&setlists);
 	if (!err) {
 		return 1;
 	}
 
-	for (int i = 0; i < setlists->setCount; i++) {
+	for (int i = 0; i < setlists->sets_count; i++) {
 		const struct setlist *setlist = &setlists->sets[i];
 		printf("%s %s\n", setlist->date, setlist->venue);
 		for (int j = 0; j < setlist->song_names_count; j++) {
@@ -22,7 +23,7 @@ int main(int argc, char **argv) {
 	}
 
 	// Load programs:
-	bool err = load_midiPrograms(&midi_programs);
+	err = load_programs(&midi_programs);
 	if (!err) {
 		return 1;
 	}
