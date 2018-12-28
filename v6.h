@@ -36,6 +36,7 @@ static const cyaml_schema_field_t setlist_fields_schema[] = {
 		"print", CYAML_FLAG_OPTIONAL,
 		struct setlist, print
 	),
+
 	CYAML_FIELD_SEQUENCE_COUNT(
 		"songs", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
 		struct setlist, song_names, song_names_count,
@@ -138,7 +139,7 @@ static const cyaml_schema_field_t amp_tone_definition_fields_schema[] = {
 		"volume", CYAML_FLAG_OPTIONAL,
 		struct amp_tone_definition, volume_dB
 	),
-	// CYAML_FIELD_IGNORE("blocks", CYAML_FLAG_OPTIONAL),
+
 	CYAML_FIELD_SEQUENCE_COUNT(
 		"blocks", CYAML_FLAG_POINTER,
 		struct amp_tone_definition, blocks, blocks_count,
@@ -217,11 +218,13 @@ static const cyaml_schema_field_t amp_definition_fields_schema[] = {
 		"volume_controller_cc", CYAML_FLAG_OPTIONAL,
 		struct amp_definition, volume_controller_cc
 	),
+
 	CYAML_FIELD_SEQUENCE_COUNT(
 		"blocks", CYAML_FLAG_POINTER,
 		struct amp_definition, blocks, blocks_count,
 		&fx_block_definition_schema, 0, CYAML_UNLIMITED
 	),
+
 	CYAML_FIELD_SEQUENCE_COUNT(
 		"tones", CYAML_FLAG_POINTER,
 		struct amp_definition, tones, tones_count,
@@ -291,6 +294,7 @@ static const cyaml_schema_field_t song_amp_tone_override_fields_schema[] = {
 		"volume", CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER,
 		struct song_amp_tone_override, volume_dB
 	),
+
 	CYAML_FIELD_SEQUENCE_COUNT(
 		"blocks", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
 		struct song_amp_tone_override, blocks, blocks_count,
@@ -329,6 +333,7 @@ static const cyaml_schema_field_t scene_amp_tone_selection_fields_schema[] = {
 		"volume", CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER,
 		struct scene_amp_tone_selection, volume_dB
 	),
+
 	CYAML_FIELD_SEQUENCE_COUNT(
 		"blocks", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
 		struct scene_amp_tone_selection, blocks, blocks_count,
@@ -357,6 +362,7 @@ static const cyaml_schema_field_t scene_descriptor_fields_schema[] = {
 		"name", CYAML_FLAG_POINTER,
 		struct scene_descriptor, scene_name, 0, CYAML_UNLIMITED
 	),
+
 	CYAML_FIELD_SEQUENCE_COUNT(
 		"amps", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
 		struct scene_descriptor, amps, amps_count,
@@ -436,13 +442,12 @@ static const cyaml_schema_field_t song_fields_schema[] = {
 		struct song, tempo
 	),
 
-	// CYAML_FIELD_IGNORE("amps", CYAML_FLAG_OPTIONAL),
 	CYAML_FIELD_SEQUENCE_COUNT(
 		"amps", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
 		struct song, amps, amps_count,
 		&song_amp_overrides_schema, 0, CYAML_UNLIMITED
 	),
-	// CYAML_FIELD_IGNORE("scenes", CYAML_FLAG_OPTIONAL),
+
 	CYAML_FIELD_SEQUENCE_COUNT(
 		"scenes", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
 		struct song, scenes, scenes_count,
@@ -475,19 +480,18 @@ static const cyaml_schema_field_t midi_program_fields_schema[] = {
 		"midi", CYAML_FLAG_OPTIONAL,
 		struct midi_program, program_number
 	),
+
 	CYAML_FIELD_SEQUENCE_COUNT(
 		"amps", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
 		struct midi_program, amps, amps_count,
 		&amp_definition_schema, 0, CYAML_UNLIMITED
 	),
 
-	// CYAML_FIELD_IGNORE("songs", CYAML_FLAG_OPTIONAL),
 	CYAML_FIELD_SEQUENCE_COUNT(
 		"songs", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
 		struct midi_program, songs, songs_count,
 		&song_schema, 0, CYAML_UNLIMITED
 	),
-
 	CYAML_FIELD_END
 };
 
