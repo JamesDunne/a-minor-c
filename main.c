@@ -36,19 +36,28 @@ int main(int argc, char **argv) {
 			const struct amp_definition *amp = &midi_program->amps[a];
 
 			printf("  Amp[%2d]\n", a);
-			printf("    Name:      \"%s\"\n", amp->name);
-			printf("    Gain CC:   %3d\n", amp->gain_controller_cc);
-			printf("    Volume CC: %3d\n", amp->volume_controller_cc);
+			printf("    Name:      %s\n", amp->name);
+			printf("    Gain CC:   %d\n", amp->gain_controller_cc);
+			printf("    Volume CC: %d\n", amp->volume_controller_cc);
 
 			printf("    Blocks:\n");
 			for (int b = 0; b < amp->blocks_count; b++) {
 				const struct fx_block_definition *block = &amp->blocks[b];
 
-				printf("      Name:         \"%s\"\n", block->name);
-				printf("      Enabled CC:   %3d\n", block->enabled_switch_cc);
+				printf("      Name:         %s\n", block->name);
+				printf("      Enabled CC:   %d\n", block->enabled_switch_cc);
 				if (block->xy_switch_cc) {
-					printf("      XY Switch CC: %3d\n", *block->xy_switch_cc);
+					printf("      XY Switch CC: %d\n", *block->xy_switch_cc);
 				}
+			}
+
+			printf("    Tones:\n");
+			for (int b = 0; b < amp->tones_count; b++) {
+				const struct amp_tone_definition *tone = &amp->tones[b];
+
+				printf("      Name:       %s\n", tone->name);
+				printf("      Gain:       %d\n", tone->gain);
+				printf("      Volume(dB): %.2f\n", tone->volume_dB);
 			}
 		}
 	}
