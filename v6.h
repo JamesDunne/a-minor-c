@@ -238,44 +238,42 @@ static const cyaml_schema_value_t amp_definition_schema = {
 	)
 };
 
-#if 0
 struct song_fx_block_override {
-    string name;
-    bool? on;
-    xy_switch? xy;
-}
+    const char *name;
+    bool *on;
+    enum xy_switch *xy;
+};
 
 struct song_amp_tone_override {
-    string name;
-    int? gain;
-    double? volume_dB;
+    const char *name;
+    int *gain;
+    double *volume_dB;
 
     struct song_fx_block_override *blocks;
     int blocks_count;
-}
+};
 
 struct scene_amp_tone_selection /*: song_amp_tone_override*/ {
-    string tone;
-    string name;
-    int? gain;
-    double? volume_dB;
+    const char *tone;
+    const char *name;
+    int *gain;
+    double *volume_dB;
 
     struct song_fx_block_override *blocks;
     int blocks_count;
-}
+};
 
 struct scene_descriptor {
-    string name;
+    const char *name;
 
     struct scene_amp_tone_selection *amps;
     int amps_count;
-}
+};
 
 struct song_amp_overrides {
     struct song_amp_tone_override *tones;
     int tones_count;
-}
-#endif
+};
 
 struct song {
     const char *name;

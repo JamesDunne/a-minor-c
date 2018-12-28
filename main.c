@@ -78,6 +78,7 @@ int main(int argc, char **argv) {
 
 			printf("  Song[%d]\n", s);
 			printf("    Name:      %s\n", song->name);
+			printf("    Tempo:     %d\n", song->tempo);
 		}
 	}
 
