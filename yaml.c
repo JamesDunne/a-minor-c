@@ -45,3 +45,29 @@ bool load_programs(struct midi_programs **midi_programs) {
 
 	return true;
 }
+
+bool free_setlists(struct setlists **setlists) {
+	cyaml_err_t err;
+
+	err = cyaml_free(&config, &setlists_schema, *setlists, 0);
+	if (err != CYAML_OK) {
+		fprintf(stderr, "ERROR: %s\n", cyaml_strerror(err));
+		return false;
+	}
+
+	*setlists = NULL;
+	return true;
+}
+
+bool free_programs(struct midi_programs **midi_programs) {
+	cyaml_err_t err;
+
+	err = cyaml_free(&config, &midi_programs_schema, *midi_programs, 0);
+	if (err != CYAML_OK) {
+		fprintf(stderr, "ERROR: %s\n", cyaml_strerror(err));
+		return false;
+	}
+
+	*midi_programs = NULL;
+	return true;
+}

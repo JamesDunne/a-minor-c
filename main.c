@@ -81,8 +81,8 @@ int main(int argc, char **argv) {
 		}
 	}
 
-	// cyaml_free(&config, &setlists_schema, setlists, 0);
-	// cyaml_free(&config, &midiPrograms_schema, midi_programs, 0);
+	free_setlists(&setlists);
+	free_programs(&midi_programs);
 
 	return 0;
 }
