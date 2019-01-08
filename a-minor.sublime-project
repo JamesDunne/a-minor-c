@@ -3,6 +3,12 @@
 	[
 		{
 			"path": "."
+		},
+		{
+			"path": "/Users/jamesd/me/e-sharp-minor/Controller"
+		},
+		{
+			"path": "/usr/local/include/cyaml"
 		}
 	]
 }
