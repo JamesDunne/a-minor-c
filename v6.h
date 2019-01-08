@@ -313,31 +313,12 @@ static const cyaml_schema_value_t song_amp_tone_override_schema = {
 
 struct scene_amp_tone_selection {
     const char *tone_name;
-    int *gain;
-    double *volume_dB;
-
-    struct song_fx_block_override *blocks;
-    int blocks_count;
 };
 
 static const cyaml_schema_field_t scene_amp_tone_selection_fields_schema[] = {
 	CYAML_FIELD_STRING_PTR(
 		"tone", CYAML_FLAG_POINTER,
 		struct scene_amp_tone_selection, tone_name, 0, CYAML_UNLIMITED
-	),
-	CYAML_FIELD_INT(
-		"gain", CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER,
-		struct scene_amp_tone_selection, gain
-	),
-	CYAML_FIELD_FLOAT(
-		"volume", CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER,
-		struct scene_amp_tone_selection, volume_dB
-	),
-
-	CYAML_FIELD_SEQUENCE_COUNT(
-		"blocks", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
-		struct scene_amp_tone_selection, blocks, blocks_count,
-		&song_fx_block_override_schema, 0, CYAML_UNLIMITED
 	),
 	CYAML_FIELD_END
 };

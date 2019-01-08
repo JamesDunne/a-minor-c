@@ -108,14 +108,7 @@ int main(int argc, char **argv) {
 				for (int a = 0; a < scene->amps_count; a++) {
 					const struct scene_amp_tone_selection *tone = &scene->amps[a];
 
-					printf("      Amp[%s]\n", midi_program->amps[a].amp_name);
-					printf("        Tone: %s\n", tone->tone_name);
-					if (tone->gain) {
-						printf("          Gain:   %02x\n", *tone->gain);
-					}
-					if (tone->volume_dB) {
-						printf("          Volume: %.2f\n", *tone->volume_dB);
-					}
+					printf("      Amp[%s]: %s\n", midi_program->amps[a].amp_name, tone->tone_name);
 				}
 			}
 		}
