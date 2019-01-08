@@ -1,5 +1,5 @@
 CFLAGS += -Wall -std=c11
 LDFLAGS += -lcyaml -lyaml
 
-: foreach *.c |> clang $(CFLAGS) -c %f -o %o |> %B.o
-: *.o |> clang $(LDFLAGS) %f -o %o |> a-minor
+: foreach *.c |> cc $(CFLAGS) -c %f -o %o |> %B.o
+: *.o |> cc $(LDFLAGS) %f -o %o |> a-minor
