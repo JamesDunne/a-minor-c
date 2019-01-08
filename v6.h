@@ -290,10 +290,19 @@ static const cyaml_schema_field_t song_amp_tone_override_fields_schema[] = {
 		"gain", CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER,
 		struct song_amp_tone_override, gain
 	),
-	CYAML_FIELD_FLOAT(
-		"volume", CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER,
-		struct song_amp_tone_override, volume_dB
-	),
+	// CYAML_FIELD_FLOAT_PTR(
+	// 	"volume", CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER,
+	// 	struct song_amp_tone_override, volume_dB
+	// ),
+	{
+		.key = "volume",
+		.value = {
+			.type = CYAML_FLOAT,
+			.flags = (CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER),
+			.data_size = sizeof(*((struct song_amp_tone_override *)NULL)->volume_dB)
+		},
+		.data_offset = offsetof(struct song_amp_tone_override, volume_dB)
+	},
 
 	CYAML_FIELD_SEQUENCE_COUNT(
 		"blocks", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
