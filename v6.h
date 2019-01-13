@@ -97,12 +97,12 @@ static const cyaml_schema_field_t fx_block_fields_schema[] = {
 		"name", CYAML_FLAG_POINTER,
 		struct fx_block, block_name, 0, CYAML_UNLIMITED
 	),
-	CYAML_FIELD_BOOL(
-		"on", CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER,
+	CYAML_FIELD_BOOL_PTR(
+		"on", CYAML_FLAG_OPTIONAL,
 		struct fx_block, on
 	),
-	CYAML_FIELD_ENUM(
-		"xy", CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER,
+	CYAML_FIELD_ENUM_PTR(
+		"xy", CYAML_FLAG_OPTIONAL,
 		struct fx_block, xy,
 		xy_switch_strings, CYAML_ARRAY_LEN(xy_switch_strings)
 	),
@@ -171,8 +171,8 @@ static const cyaml_schema_field_t fx_block_definition_fields_schema[] = {
 		"enabled_switch_cc", CYAML_FLAG_OPTIONAL,
 		struct fx_block_definition, enabled_switch_cc
 	),
-	CYAML_FIELD_UINT(
-		"xy_switch_cc", CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER,
+	CYAML_FIELD_UINT_PTR(
+		"xy_switch_cc", CYAML_FLAG_OPTIONAL,
 		struct fx_block_definition, xy_switch_cc
 	),
 	CYAML_FIELD_END
@@ -286,23 +286,23 @@ static const cyaml_schema_field_t song_amp_tone_override_fields_schema[] = {
 		"name", CYAML_FLAG_POINTER,
 		struct song_amp_tone_override, tone_name, 0, CYAML_UNLIMITED
 	),
-	CYAML_FIELD_INT(
-		"gain", CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER,
+	CYAML_FIELD_INT_PTR(
+		"gain", CYAML_FLAG_OPTIONAL,
 		struct song_amp_tone_override, gain
 	),
-	// CYAML_FIELD_FLOAT_PTR(
-	// 	"volume", CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER,
-	// 	struct song_amp_tone_override, volume_dB
-	// ),
-	{
-		.key = "volume",
-		.value = {
-			.type = CYAML_FLOAT,
-			.flags = (CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER),
-			.data_size = sizeof(*((struct song_amp_tone_override *)NULL)->volume_dB)
-		},
-		.data_offset = offsetof(struct song_amp_tone_override, volume_dB)
-	},
+	CYAML_FIELD_FLOAT_PTR(
+		"volume", CYAML_FLAG_OPTIONAL,
+		struct song_amp_tone_override, volume_dB
+	),
+	// {
+	// 	.key = "volume",
+	// 	.value = {
+	// 		.type = CYAML_FLOAT,
+	// 		.flags = (CYAML_FLAG_OPTIONAL | CYAML_FLAG_POINTER),
+	// 		.data_size = sizeof(*((struct song_amp_tone_override *)NULL)->volume_dB)
+	// 	},
+	// 	.data_offset = offsetof(struct song_amp_tone_override, volume_dB)
+	// },
 
 	CYAML_FIELD_SEQUENCE_COUNT(
 		"blocks", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
