@@ -4,8 +4,7 @@
 
 #include <cyaml/cyaml.h>
 
-struct setlist
-{
+struct setlist {
 	const char *date;
 	const char *venue;
 	bool active;
@@ -53,8 +52,7 @@ static const cyaml_schema_value_t setlist_schema = {
 	)
 };
 
-struct setlists
-{
+struct setlists {
 	struct setlist *sets;
 	int sets_count;
 };
@@ -493,8 +491,7 @@ static const cyaml_schema_value_t midi_program_schema = {
 	)
 };
 
-struct midi_programs
-{
+struct midi_programs {
 	struct midi_program *midi_programs;
 	int midi_programs_count;
 };

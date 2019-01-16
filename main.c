@@ -8,6 +8,8 @@ int main(int argc, char **argv) {
 
 	ctl_load(c);
 
+	ctl_save(c);
+
 	ctl_free(c);
 
 	return 0;

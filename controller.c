@@ -32,7 +32,7 @@ int ctl_load(struct controller *c) {
 	// Load programs:
 	err = load_programs(&c->midi_programs);
 	if (!err) {
-		return 1;
+		return 2;
 	}
 
 #if 0
@@ -134,4 +134,12 @@ void ctl_free(struct controller *c) {
 		free_programs(&c->midi_programs);
 		c->midi_programs = NULL;
 	}
+}
+
+int ctl_save(struct controller *c) {
+	if (!save_programs(c->midi_programs)) {
+		return 1;
+	}
+
+	return 0;
 }

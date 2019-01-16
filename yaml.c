@@ -71,3 +71,21 @@ bool free_programs(struct midi_programs **midi_programs) {
 	*midi_programs = NULL;
 	return true;
 }
+
+bool save_programs(struct midi_programs *midi_programs) {
+	cyaml_err_t err;
+
+	err = cyaml_save_file(
+		"all-programs-v6-saved.yml",
+		&config,
+		&midi_programs_schema,
+		(void *) midi_programs,
+		0
+	);
+	if (err != CYAML_OK) {
+		fprintf(stderr, "ERROR: %s\n", cyaml_strerror(err));
+		return false;
+	}
+
+	return true;
+}
