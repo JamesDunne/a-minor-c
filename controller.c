@@ -1,21 +1,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "yaml.h"
-
-struct controller {
-	struct setlists *setlists;
-	struct midi_programs *midi_programs;
-};
+#include "controller.h"
 
 struct controller *ctl_new() {
 	struct controller *c = (struct controller *) calloc(sizeof(struct controller), 0);
+	c->setlists = NULL;
+	c->midi_programs = NULL;
 	return c;
 }
 
 int ctl_load(struct controller *c) {
-	c->setlists = NULL;
-	c->midi_programs = NULL;
 	bool err = false;
 
 	// Load setlists:
@@ -130,9 +125,13 @@ int ctl_load(struct controller *c) {
 }
 
 void ctl_free(struct controller *c) {
-	free_setlists(&c->setlists);
-	c->setlists = NULL;
+	if (c->setlists != NULL) {
+		free_setlists(&c->setlists);
+		c->setlists = NULL;
+	}
 
-	free_programs(&c->midi_programs);
-	c->midi_programs = NULL;
+	if (c->midi_programs != NULL) {
+		free_programs(&c->midi_programs);
+		c->midi_programs = NULL;
+	}
 }
