@@ -1,6 +1,9 @@
 midi_programs:
-- amps:
+- midi: 0
+  amps:
   - name: MG
+    gain_controller_cc: 18
+    volume_controller_cc: 16
     blocks:
     - name: amp1
       enabled_switch_cc: 37
@@ -22,11 +25,10 @@ midi_programs:
       enabled_switch_cc: 41
     - name: dly1
       enabled_switch_cc: 47
-    gain_controller_cc: 18
-    volume_controller_cc: 16
     tones:
     - name: clean
       gain: 18
+      volume: 0
       blocks:
       - name: amp1
         on: true
@@ -42,6 +44,7 @@ midi_programs:
         xy: X
     - name: dirty
       gain: 64
+      volume: 0
       blocks:
       - name: amp1
         on: true
@@ -57,6 +60,7 @@ midi_programs:
         xy: X
     - name: acoustic
       gain: 18
+      volume: 0
       blocks:
       - name: amp1
         on: false
@@ -71,6 +75,8 @@ midi_programs:
         on: true
         xy: X
   - name: JD
+    gain_controller_cc: 19
+    volume_controller_cc: 17
     blocks:
     - name: amp2
       enabled_switch_cc: 38
@@ -92,11 +98,10 @@ midi_programs:
       enabled_switch_cc: 42
     - name: dly2
       enabled_switch_cc: 48
-    gain_controller_cc: 19
-    volume_controller_cc: 17
     tones:
     - name: clean
       gain: 18
+      volume: 0
       blocks:
       - name: amp2
         on: true
@@ -112,6 +117,7 @@ midi_programs:
         xy: X
     - name: dirty
       gain: 64
+      volume: 0
       blocks:
       - name: amp2
         on: true
@@ -127,6 +133,7 @@ midi_programs:
         xy: X
     - name: acoustic
       gain: 18
+      volume: 0
       blocks:
       - name: amp2
         on: false
@@ -179,14 +186,17 @@ midi_programs:
         blocks:
         - name: dly2
           on: true
+          xy: X
         - name: pit2
           on: true
+          xy: X
       - name: dirty2
         gain: 112
         volume: 6
         blocks:
         - name: dly2
           on: true
+          xy: X
     scenes:
     - name: JD dirty;MG dirty
       amps:
@@ -232,6 +242,7 @@ midi_programs:
         blocks:
         - name: dly2
           on: true
+          xy: X
     scenes:
     - name: JD dirty;MG dirty
       amps:
@@ -259,6 +270,7 @@ midi_programs:
         blocks:
         - name: cho2
           on: true
+          xy: X
     scenes:
     - name: JD lead;MG dirty
       amps:
@@ -280,6 +292,7 @@ midi_programs:
         blocks:
         - name: dly2
           on: true
+          xy: X
     scenes:
     - name: JD dirty;MG dirty
       amps:
@@ -309,11 +322,13 @@ midi_programs:
         blocks:
         - name: dly2
           on: true
+          xy: X
       - name: dirty1
       - name: dirty2
         blocks:
         - name: dly2
           on: true
+          xy: X
     scenes:
     - name: JD lead;MG dirty
       amps:
@@ -366,12 +381,14 @@ midi_programs:
         blocks:
         - name: dly2
           on: true
+          xy: X
       - name: dirty4
         gain: 112
         volume: 2
         blocks:
         - name: dly2
           on: true
+          xy: X
       - name: clean5
     scenes:
     - name: Clean intro
@@ -427,8 +444,10 @@ midi_programs:
         blocks:
         - name: phr2
           on: true
+          xy: X
         - name: dly2
           on: true
+          xy: X
       - name: dirty1
     scenes:
     - name: JD lead;MG dirty
@@ -533,17 +552,21 @@ midi_programs:
         blocks:
         - name: dly2
           on: true
+          xy: X
       - name: clean1
         blocks:
         - name: cho2
           on: true
+          xy: X
         - name: dly2
           on: true
+          xy: X
       - name: dirty2
         volume: 4
         blocks:
         - name: dly2
           on: true
+          xy: X
     scenes:
     - name: JD lead;MG dirty
       amps:
@@ -624,6 +647,7 @@ midi_programs:
         blocks:
         - name: dly2
           on: true
+          xy: X
     scenes:
     - name: JD dirty;MG dirty
       amps:
@@ -686,6 +710,7 @@ midi_programs:
         blocks:
         - name: dly1
           on: true
+          xy: X
     - tones:
       - name: dirty0
     scenes:
@@ -733,8 +758,10 @@ midi_programs:
         blocks:
         - name: dly2
           on: true
+          xy: X
         - name: cho2
           on: true
+          xy: X
     scenes:
     - name: JD dirty;MG dirty
       amps:
@@ -797,6 +824,7 @@ midi_programs:
         blocks:
         - name: dly2
           on: true
+          xy: X
     scenes:
     - name: JD dirty;MG dirty
       amps:
@@ -825,6 +853,7 @@ midi_programs:
         blocks:
         - name: dly1
           on: true
+          xy: X
     - tones:
       - name: clean0
       - name: dirty1
@@ -905,6 +934,7 @@ midi_programs:
         blocks:
         - name: dly2
           on: true
+          xy: X
     scenes:
     - name: JD dirty;MG dirty
       amps:
@@ -945,8 +975,10 @@ midi_programs:
         blocks:
         - name: phr2
           on: true
+          xy: X
         - name: dly2
           on: true
+          xy: X
     scenes:
     - name: JD dirty;MG dirty
       amps:
@@ -983,11 +1015,13 @@ midi_programs:
         blocks:
         - name: dly2
           on: true
+          xy: X
       - name: dirty3
         volume: 4
         blocks:
         - name: cho2
           on: true
+          xy: X
     scenes:
     - name: JD clean;MG clean
       amps:
@@ -1054,6 +1088,7 @@ midi_programs:
         blocks:
         - name: dly2
           on: true
+          xy: X
     scenes:
     - name: JD dirty;MG dirty
       amps:
@@ -1083,10 +1118,12 @@ midi_programs:
         blocks:
         - name: dly2
           on: true
+          xy: X
       - name: dirty4
         blocks:
         - name: dly2
           on: true
+          xy: X
     scenes:
     - name: JD dirty;MG dirty
       amps:
@@ -1117,7 +1154,7 @@ midi_programs:
     alternate_names:
     - Say It Aint So
     - Say It Ain't So
-    - Say It Ain’t So
+    - ! "Say It Ain\u2019t So"
     who_starts: Jim
     tempo: 77
     amps:
@@ -1225,6 +1262,7 @@ midi_programs:
         blocks:
         - name: dly2
           on: true
+          xy: X
     scenes:
     - name: JD clean;MG clean
       amps:
@@ -1288,7 +1326,7 @@ midi_programs:
     short_name: Trippin
     alternate_names:
     - Trippin
-    - Trippin’
+    - ! "Trippin\u2019"
     - Trippin'
     - Trippin on a Hole in a Paper Heart
     - Trippin on a Hole
@@ -1339,23 +1377,27 @@ midi_programs:
         blocks:
         - name: dly2
           on: true
+          xy: X
       - name: dirty2
         gain: 94
         volume: 4
         blocks:
         - name: dly2
           on: true
+          xy: X
       - name: dirty3
         gain: 94
         volume: -2
         blocks:
         - name: dly2
           on: true
+          xy: X
       - name: dirty4
         gain: 94
         blocks:
         - name: dly2
           on: true
+          xy: X
     scenes:
     - name: Chorus
       amps:
@@ -1454,18 +1496,21 @@ midi_programs:
         blocks:
         - name: dly1
           on: true
+          xy: X
       - name: dirty1
     - tones:
       - name: dirty0
         blocks:
         - name: dly2
           on: true
+          xy: X
       - name: dirty1
       - name: dirty2
         volume: 4
         blocks:
         - name: dly2
           on: true
+          xy: X
     scenes:
     - name: Intro
       amps:
@@ -1507,11 +1552,13 @@ midi_programs:
         blocks:
         - name: cho1
           on: true
+          xy: X
     - tones:
       - name: clean0
         blocks:
         - name: cho2
           on: true
+          xy: X
       - name: dirty1
         gain: 46
         volume: -2
@@ -1524,12 +1571,14 @@ midi_programs:
         blocks:
         - name: dly2
           on: true
+          xy: X
       - name: dirty4
         gain: 65
         volume: -1
         blocks:
         - name: dly2
           on: true
+          xy: X
     scenes:
     - name: Intro
       amps:
@@ -1571,7 +1620,7 @@ midi_programs:
     - Bouncin
     - Bouncing
     - Bouncin'
-    - Bouncin’
+    - ! "Bouncin\u2019"
     who_starts: Jim
     tempo: 150
     amps:
@@ -1637,7 +1686,7 @@ midi_programs:
     - Kids Arent Alright
     - Kids Aren't Alright
     - The Kids Aren't Alright
-    - Kids Aren’t Alright
+    - ! "Kids Aren\u2019t Alright"
     who_starts: Glaz
     tempo: 130
     amps:
@@ -1720,6 +1769,7 @@ midi_programs:
         blocks:
         - name: cho2
           on: true
+          xy: X
       - name: dirty1
         gain: 58
     scenes:
@@ -1816,12 +1866,14 @@ midi_programs:
         blocks:
         - name: dly2
           on: true
+          xy: X
       - name: dirty2
         gain: 66
         volume: 1
         blocks:
         - name: dly2
           on: true
+          xy: X
     scenes:
     - name: Rhythm
       amps:
@@ -1897,6 +1949,8 @@ midi_programs:
 - midi: 1
   amps:
   - name: MG
+    gain_controller_cc: 18
+    volume_controller_cc: 16
     blocks:
     - name: amp1
       enabled_switch_cc: 37
@@ -1918,11 +1972,10 @@ midi_programs:
       enabled_switch_cc: 41
     - name: dly1
       enabled_switch_cc: 47
-    gain_controller_cc: 18
-    volume_controller_cc: 16
     tones:
     - name: clean
       gain: 18
+      volume: 0
       blocks:
       - name: amp1
         on: true
@@ -1938,6 +1991,7 @@ midi_programs:
         xy: X
     - name: dirty
       gain: 64
+      volume: 0
       blocks:
       - name: amp1
         on: true
@@ -1953,6 +2007,7 @@ midi_programs:
         xy: X
     - name: acoustic
       gain: 18
+      volume: 0
       blocks:
       - name: amp1
         on: false
@@ -1967,6 +2022,8 @@ midi_programs:
         on: true
         xy: X
   - name: JD
+    gain_controller_cc: 19
+    volume_controller_cc: 17
     blocks:
     - name: amp2
       enabled_switch_cc: 38
@@ -1988,11 +2045,10 @@ midi_programs:
       enabled_switch_cc: 42
     - name: dly2
       enabled_switch_cc: 48
-    gain_controller_cc: 19
-    volume_controller_cc: 17
     tones:
     - name: clean
       gain: 18
+      volume: 0
       blocks:
       - name: amp2
         on: true
@@ -2008,6 +2064,7 @@ midi_programs:
         xy: X
     - name: dirty
       gain: 64
+      volume: 0
       blocks:
       - name: amp2
         on: true
@@ -2023,6 +2080,7 @@ midi_programs:
         xy: X
     - name: acoustic
       gain: 18
+      volume: 0
       blocks:
       - name: amp2
         on: false
@@ -2052,8 +2110,10 @@ midi_programs:
         blocks:
         - name: rtr1
           on: true
+          xy: X
         - name: dly1
           on: true
+          xy: X
     - tones:
       - name: clean0
     scenes:
@@ -2106,6 +2166,8 @@ midi_programs:
 - midi: 2
   amps:
   - name: MG
+    gain_controller_cc: 18
+    volume_controller_cc: 16
     blocks:
     - name: amp1
       enabled_switch_cc: 37
@@ -2127,11 +2189,10 @@ midi_programs:
       enabled_switch_cc: 41
     - name: dly1
       enabled_switch_cc: 47
-    gain_controller_cc: 18
-    volume_controller_cc: 16
     tones:
     - name: clean
       gain: 18
+      volume: 0
       blocks:
       - name: amp1
         on: true
@@ -2147,6 +2208,7 @@ midi_programs:
         xy: X
     - name: dirty
       gain: 64
+      volume: 0
       blocks:
       - name: amp1
         on: true
@@ -2162,6 +2224,7 @@ midi_programs:
         xy: X
     - name: acoustic
       gain: 18
+      volume: 0
       blocks:
       - name: amp1
         on: false
@@ -2176,6 +2239,8 @@ midi_programs:
         on: true
         xy: X
   - name: JD
+    gain_controller_cc: 19
+    volume_controller_cc: 17
     blocks:
     - name: amp2
       enabled_switch_cc: 38
@@ -2197,11 +2262,10 @@ midi_programs:
       enabled_switch_cc: 42
     - name: dly2
       enabled_switch_cc: 48
-    gain_controller_cc: 19
-    volume_controller_cc: 17
     tones:
     - name: clean
       gain: 18
+      volume: 0
       blocks:
       - name: amp2
         on: true
@@ -2217,6 +2281,7 @@ midi_programs:
         xy: X
     - name: dirty
       gain: 64
+      volume: 0
       blocks:
       - name: amp2
         on: true
@@ -2232,6 +2297,7 @@ midi_programs:
         xy: X
     - name: acoustic
       gain: 18
+      volume: 0
       blocks:
       - name: amp2
         on: false
@@ -2262,6 +2328,7 @@ midi_programs:
         blocks:
         - name: cho1
           on: true
+          xy: X
     - tones:
       - name: dirty0
         gain: 48
@@ -2271,32 +2338,38 @@ midi_programs:
         blocks:
         - name: dly2
           on: true
+          xy: X
       - name: dirty2
         gain: 48
         volume: 1
         blocks:
         - name: dly2
           on: true
+          xy: X
         - name: pit2
           on: true
+          xy: X
       - name: dirty3
         gain: 48
         volume: 6
         blocks:
         - name: dly2
           on: true
+          xy: X
       - name: dirty4
         gain: 96
         volume: 6
         blocks:
         - name: dly2
           on: true
+          xy: X
       - name: dirty5
         gain: 112
         volume: 3
         blocks:
         - name: dly2
           on: true
+          xy: X
     scenes:
     - name: Main
       amps:

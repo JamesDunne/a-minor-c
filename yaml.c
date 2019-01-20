@@ -76,7 +76,7 @@ bool save_programs(struct midi_programs *midi_programs) {
 	cyaml_err_t err;
 
 	err = cyaml_save_file(
-		"all-programs-v6-saved.yml",
+		"all-programs-v6.yml",
 		&config,
 		&midi_programs_schema,
 		(void *) midi_programs,
