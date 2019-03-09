@@ -1,0 +1,28 @@
+root = .
+builddir = build
+cc = clang
+ar = ar
+cflags = -g -Wall -Wextra -std=c11
+ldflags = 
+libs = -lcyaml -lyaml
+
+rule cc
+  command = $cc -MMD -MT $out -MF $out.d $cflags -c $in -o $out
+  description = CC   $out
+  depfile = $out.d
+  deps = gcc
+
+rule link
+  command = $cc $ldflags -o $out $in $libs
+  description = LINK $out
+
+# Core source builds:
+build $builddir/controller.o: cc $root/controller.c
+build $builddir/yaml.o: cc $root/yaml.c
+build $builddir/main.o: cc $root/main.c
+
+# Main executable:
+build a-minor: link $
+  $builddir/controller.o $
+  $builddir/yaml.o $
+  $builddir/main.o
