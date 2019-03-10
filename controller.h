@@ -1,6 +1,9 @@
 #pragma once
 
+#include <stdint.h>
+
 #include "yaml.h"
+#include "midi.h"
 
 struct controller {
 	struct setlists *setlists;
@@ -9,6 +12,7 @@ struct controller {
 	int setlist;
 	int program;
 
+	struct midi midi;
 };
 
 // Create/destroy controller and load/save functions:

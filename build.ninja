@@ -19,10 +19,12 @@ rule link
 # Core source builds:
 build $builddir/controller.o: cc $root/controller.c
 build $builddir/yaml.o: cc $root/yaml.c
+build $builddir/midi.o: cc $root/midi.c
 build $builddir/main.o: cc $root/main.c
 
 # Main executable:
 build a-minor: link $
   $builddir/controller.o $
   $builddir/yaml.o $
+  $builddir/midi.o $
   $builddir/main.o

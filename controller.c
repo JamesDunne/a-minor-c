@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 #include "controller.h"
+#include "midi.h"
 
 struct controller *ctl_new() {
 	struct controller *c = (struct controller *) calloc(sizeof(struct controller), 0);
@@ -141,5 +142,17 @@ int ctl_save(struct controller *c) {
 		return 1;
 	}
 
+	return 0;
+}
+
+int ctl_midi_cc(struct controller *c, int ch, int cc, int value) {
+	if (value != c->midi.channel[ch].cc[cc]) {
+		c->midi.channel[ch].cc[cc] = value;
+		midi_send_cmd2_impl(&c->midi, 0xB0 | ch, cc, value);
+	}
+	return 0;
+}
+
+int ctl_scene_activate(struct controller *c) {
 	return 0;
 }
